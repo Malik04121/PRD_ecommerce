@@ -1,0 +1,19 @@
+
+.react-multiple-carousel__arrow::before {
+    left: -15px;
+  }
+  
+  .react-multi-carousel-list {
+    overflow: visible;
+  }
+.category{
+  padding-right: 30px;
+}
+.abs{
+  margin-top:200px
+}
+.categorycrausel{
+  padding-right: 80px;
+  padding-left: 80px;
+  background-color:#666;
+}
