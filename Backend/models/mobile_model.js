@@ -2,15 +2,7 @@ const mongoose =require("mongoose")
 
 
 
-
-
-
-
-
-
-
-
-const LaptopSchema=mongoose.Schema({
+const MobileSchema=mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -36,6 +28,6 @@ const LaptopSchema=mongoose.Schema({
     updateOn:Date
 
 })
-const LaptopModel=mongoose.model("Laptop",LaptopSchema)
+const MobileModel=mongoose.model("Laptop",MobileSchema)
 
-module.exports={LaptopModel}
+module.exports={MobileModel}

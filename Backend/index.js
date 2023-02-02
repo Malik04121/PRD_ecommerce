@@ -1,3 +1,4 @@
+const cors = require("cors");
 
 const express=require("express")
 const {connection}=require("./config/db")
@@ -6,7 +7,11 @@ require("dotenv").config()
 const { laptoproute } = require("./routes/Laptop_route")
 
 const app=express()
-
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
 app.use(express.json())
 
 app.get("/",(req,res)=>{

@@ -1,16 +1,6 @@
 const mongoose =require("mongoose")
 
-
-
-
-
-
-
-
-
-
-
-const LaptopSchema=mongoose.Schema({
+const TVSchema=mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -36,6 +26,6 @@ const LaptopSchema=mongoose.Schema({
     updateOn:Date
 
 })
-const LaptopModel=mongoose.model("Laptop",LaptopSchema)
+const TvModel=mongoose.model("Tv",TVSchema)
 
-module.exports={LaptopModel}
+module.exports={TvModel}

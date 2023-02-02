@@ -13,5 +13,12 @@ function App() {
    </>
   );
 }
-
+// {
+//   "name": "",
+//   "image1": "",
+//   "price":,
+//   "rating": 4.7,
+//   "brand": "Hp",
+//   "category": "Windows"
+// }
 export default App;
