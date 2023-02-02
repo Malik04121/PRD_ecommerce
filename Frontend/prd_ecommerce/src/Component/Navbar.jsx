@@ -1,51 +1,43 @@
-// import { Box, Flex, Image, InputGroup, Text, VStack } from "@chakra-ui/react"
-// function Navbar(){
+import { Box, Flex, Image, Input, InputGroup, InputRightElement, Text, VStack } from "@chakra-ui/react"
+import {ChevronDownIcon, Search2Icon, SearchIcon} from "@chakra-ui/icons"
+import {BiSearch} from "react-icons/bi"
+import {FiHeart} from "react-icons/fi"
+import {BsCart2} from "react-icons/bs"
+import {FaUserAlt} from "react-icons/fa"
+import logo from "../Assets/logo2_resize.png"
 
-//     return(
-//         <>
-//           <Flex>
-//              <Box>
-//                 <Image src=""/>
-//              </Box>
-//              <VStack className="inputBox">
-//             <InputGroup>
-//               {/* <Input value={searchText} className='searchBox' placeholder='Search for Products' onChange={(e) => changeHandler(e)} />
-//                             <InputRightElement children={<SearchIcon color='black.500' />} /> */}
-//               <Autocomplete
-//                 className="searchBox"
-//                 options={options}
-//                 result={[]}
-//                 placeholder="Search for Product"
-//                 onChange={(e) => changeHandler(e, options)}
-//                 pl="10px"
-//                 h="40px"
-//                 w="300px"
-//                 outline="1px solid grey"
-//                 borderRadius="10px"
-//               />
-//               <InputRightElement
-//                   pointerEvents='none'
-//                   bg="#008BCF"
-//                   borderRightRadius="20%"
-//                   children={<Search2Icon color='white'  />}
-//               />
-//             {/* //   <InputRightElement children={<SearchIcon color="black.500" bg="blue" />} /> */}
-//             </InputGroup>
-//           </VStack>
-//             <Flex>
-//                 <Box>
-//                     <Text>Wishlist</Text>
-//                 </Box>
-//                 <Box>
-//                     <Text>User</Text>
-//                 </Box>
-//                 <Box>
-//                     <Text>Cart</Text>
-//                 </Box>
-//             </Flex>
-//           </Flex>
-//         </>
-//     )
+function Navbar(){
 
-// }
-// export {Navbar}
+    return(
+        <>
+          <Flex  h="80px" alignItems="center" pl="100px" pr="100px" bg="black" justifyContent="space-between" position="sticky">
+            <Flex gap="40px">
+               <Box h="60px" w="200px">
+                 <Image src={logo} h="100%" w="100%"/>
+               </Box>
+               <Flex alignItems="center" color="white" w="330px">
+                 <Input placeholder="Search for anything" color="white"/>
+                 <Box bg="red" h="40px" w="30px" alignItems="center"><BiSearch m="auto"/></Box>
+               </Flex>
+            </Flex>
+            
+            <Flex gap="30px">
+                <Flex alignItems="center" gap="7px">
+                    <FiHeart color="white" size="1.2rem"/>
+                    <Text color="white" fontSize="xl">Wishlist</Text>
+                </Flex>
+                <Flex alignItems="center" color="white" gap="7px">
+                  <FaUserAlt size="1.3rem"/>
+                  <Text fontSize="xl">Login</Text>
+                </Flex>
+                <Flex alignItems="center" color="white" gap="7px">
+                    <BsCart2 size="1.3rem"/>
+                    <Text fontSize="xl">Cart</Text>
+                </Flex>
+            </Flex>
+          </Flex>
+        </>
+    )
+
+}
+export {Navbar}
