@@ -4,7 +4,7 @@ const express=require("express")
 const {connection}=require("./config/db")
 require("dotenv").config()
 
-const { laptoproute } = require("./routes/Laptop_route")
+const { productroute } = require("./routes/Product_route")
 
 const app=express()
 app.use(
@@ -17,7 +17,7 @@ app.use(express.json())
 app.get("/",(req,res)=>{
     res.send("welcome to home page")
   })
-app.use("/laptop",laptoproute)
+app.use("/product",productroute)
 
 app.listen(process.env.port,async()=>{
     try{

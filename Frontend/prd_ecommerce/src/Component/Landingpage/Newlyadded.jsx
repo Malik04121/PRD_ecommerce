@@ -1,3 +1,4 @@
+
 import { Box, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -6,11 +7,11 @@ import Carousel from "react-multi-carousel";
 
 import "./ProductCarousel.css";
 
-function LaptopcategoryCraousel(){
+function Newlyadded(){
  const [laptopdata,setLaptopdata]=useState([])
  
  useEffect(()=>{
-     fetch("http://localhost:3200/product?type=laptop")
+     fetch("http://localhost:3200/product")
      .then(res=>res.json())
      .then(res=>setLaptopdata(res))
      .catch((err)=>(
@@ -40,13 +41,13 @@ function LaptopcategoryCraousel(){
 
 return(
 
-    <Box>
-       <Flex mt="50px" bg="#1B1B1B">
+    <Box bg="#1B1B1B">
+       <Flex mt="50px">
         <Box w="15%"  ml="30px" mr="20px" >
          <Divider orientation="horizontal" borderColor="#33FF83" borderWidth="1.5px" mt="8px" />
          <Divider orientation="horizontal" borderColor="#33FF83" mt="5px" borderWidth="1.5px"/>
         </Box>
-         <Heading size="md" color="white" as="h6">Best Selling Laptops</Heading>
+         <Heading size="md" color="white" as="h6">New at TechHunt</Heading>
         </Flex> 
     <Box className="categorycrausel">
         
@@ -75,4 +76,4 @@ return(
 )
 
 }
-export {LaptopcategoryCraousel}
+export {Newlyadded}
