@@ -27,16 +27,16 @@ function CategoryCarousel(){
       };
 
 return(
-    <Box className="categorycrausel">
+    <Box className="categorycrausel" bg="#131212">
        <Carousel responsive={responsive}
     //  autoPlay={true}
      infinite={true}
 
      >
        {Categorydetails.map((ele)=>(
-    <Box mt="50px"  mr="0px" ml="0px" bg="grey">
+    <Box mt="50px"  mr="0px" ml="0px" bg="#131212">
         <Box >
-          <Image border="none" w="100%"  bg="black" objectFit="cover" objectPosition="top" src={ele.img}/>     
+          <Image border="none" w="100%"  bg="#131212 " objectFit="cover" objectPosition="top" src={ele.img}/>     
         </Box>
     </Box>
   ))}
