@@ -3,14 +3,18 @@ import './App.css';
 import { Navbar } from './Component/Navbar';
 import { Subnavbar } from './Component/Subnavbar';
 import { Landingpage } from './Component/Landingpage/Landingpage';
+import { Route } from 'react-router';
+import { MainRoute } from './Pages/Route';
+import { Box } from '@chakra-ui/layout';
 
 function App() {
   return (
-   <>
+   <Box className="body">
    <Navbar/>
-   <Subnavbar/>
-   <Landingpage/>
-   </>
+   {/* <Subnavbar/> */}
+   {/* <Landingpage/> */}
+   <MainRoute/>
+   </Box>
   );
 }
 // {

@@ -15,9 +15,9 @@ return(
       <LaptopcategoryCraousel/>
       <Newlyadded/>
       <TopBrand/>
-      <Box h="2500px" bg="gray">
+      {/* <Box h="2500px" bg="gray">
 
-      </Box>
+      </Box> */}
     </Box>
 )
 

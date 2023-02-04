@@ -55,9 +55,11 @@ return(
      autoPlay={true}
      infinite={true}
      h="500px"
-     bg="#353535">
+     bg="#353535"
+     
+     >
        {ItemDetails1.map((ele)=>(
-    <Box bg="#353535">
+    <Box bg="#353535"  >
       <Image src={ele.img}/>  
     </Box>
   ))}

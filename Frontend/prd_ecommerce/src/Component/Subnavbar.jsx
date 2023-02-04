@@ -5,7 +5,7 @@ function Subnavbar(){
 
     return(
         <>
-          <Flex justifyContent="space-between" h="40px" color="white" bg="#353535">
+          <Flex justifyContent="space-between" h="40px" color="white" bg="#353535" pl="30px" pr="30px">
             <Menu>
                 <MenuButton color="white">Mobiles & Tablets</MenuButton>
                 <MenuList display="flex" color="white" bg="black">
