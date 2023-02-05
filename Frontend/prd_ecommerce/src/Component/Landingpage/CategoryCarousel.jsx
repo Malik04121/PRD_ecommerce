@@ -2,6 +2,7 @@ import { Box, Image } from "@chakra-ui/react";
 import Carousel from "react-multi-carousel";
 import { Categorydetails } from './productcrouseldata';
 import "./ProductCarousel.css";
+import { Link } from "react-router-dom";
 
 
 function CategoryCarousel(){
@@ -36,7 +37,9 @@ return(
        {Categorydetails.map((ele)=>(
     <Box mt="50px"  mr="0px" ml="0px" bg="#131212">
         <Box >
+          <Link to={ele.caption}>
           <Image border="none" w="100%"  bg="#131212 " objectFit="cover" objectPosition="top" src={ele.img}/>     
+          </Link>
         </Box>
     </Box>
   ))}
