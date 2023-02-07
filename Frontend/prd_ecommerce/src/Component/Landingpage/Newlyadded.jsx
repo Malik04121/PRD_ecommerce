@@ -11,7 +11,7 @@ function Newlyadded(){
  const [laptopdata,setLaptopdata]=useState([])
  
  useEffect(()=>{
-     fetch("http://localhost:3200/product")
+     fetch("https://red-houndstooth.cyclic.app/product")
      .then(res=>res.json())
      .then(res=>setLaptopdata(res))
      .catch((err)=>(

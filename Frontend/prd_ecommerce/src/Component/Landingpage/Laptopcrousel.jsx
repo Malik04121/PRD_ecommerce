@@ -10,7 +10,7 @@ function LaptopcategoryCraousel(){
  const [laptopdata,setLaptopdata]=useState([])
  
  useEffect(()=>{
-     fetch("http://localhost:3200/product?type=laptop")
+     fetch("https://red-houndstooth.cyclic.app/product?type=laptop")
      .then(res=>res.json())
      .then(res=>setLaptopdata(res))
      .catch((err)=>(

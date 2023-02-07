@@ -1,4 +1,5 @@
 import { Flex, Menu, MenuButton, MenuGroup, MenuItem, MenuList } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 
 function Subnavbar(){
@@ -8,8 +9,9 @@ function Subnavbar(){
           <Flex justifyContent="space-between" h="40px" color="white" bg="#353535" pl="30px" pr="30px">
             <Menu>
                 <MenuButton color="white">Mobiles & Tablets</MenuButton>
-                <MenuList display="flex" color="white" bg="black">
-                    <MenuGroup title="Mobile">
+                <Link to="/mobile">
+                <MenuList display="flex" color="white" bg="black" gap="50px">
+                    <MenuGroup title="Mobile" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
                         <Flex>
                         <MenuGroup title="Type" color="white" bg="black">
                           <MenuItem bg="black">Iphone</MenuItem>
@@ -25,7 +27,7 @@ function Subnavbar(){
                         </Flex>
                     </MenuGroup>
                     
-                    <MenuGroup title="Tablets">
+                    <MenuGroup title="Tablets" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
                         <Flex>
                         <MenuGroup title="Type" bg="black">
                           <MenuItem bg="black">Apple Ipad</MenuItem>
@@ -42,22 +44,83 @@ function Subnavbar(){
                     </MenuGroup>
 
                 </MenuList>
+                </Link>
             </Menu>
             <Menu>
                 <MenuButton color="white">
                     Television
                 </MenuButton>
-                <MenuList display="flex">
-
+                <Link to="/laptop">
+                <MenuList display="flex" bg="black" gap="60px">
+                <MenuGroup title="Television" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                        <Flex>
+                        <MenuGroup title="Type" color="white" bg="black">
+                          <MenuItem bg="black">LED</MenuItem>
+                          <MenuItem bg="black">QLED TVs</MenuItem>
+                          <MenuItem bg="black">OLED TVs</MenuItem>
+                          <MenuItem bg="black">4K UHD TVs</MenuItem>
+                          <MenuItem bg="black">8K UHD TVs</MenuItem>
+                          <MenuItem bg="black">Smart TVs</MenuItem>
+                          <MenuItem bg="black">Android Smart TVs</MenuItem>
+                        </MenuGroup>
+                        <MenuGroup title="Screen Size">
+                          <MenuItem bg="black">Small Screen</MenuItem>
+                          <MenuItem bg="black">Medium Screen</MenuItem>
+                          <MenuItem bg="black">Large Screen</MenuItem>
+                        </MenuGroup>
+                        </Flex>
+                    </MenuGroup>
+                    
+                    <MenuGroup title="TV Accessories" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                          <MenuItem bg="black">TV Stand</MenuItem>
+                          <MenuItem bg="black">Cable and Connectors</MenuItem>
+                          <MenuItem bg="black">TV mount</MenuItem>
+                          <MenuItem bg="black">TV Remote</MenuItem>
+                    </MenuGroup>
                 </MenuList>
+                </Link>
             </Menu>
             <Menu>
                 <MenuButton color="white">
                     Laptops
                 </MenuButton>
-                <MenuList display="flex">
-
+                <Link to="/laptop">
+                <MenuList display="flex" bg="black" gap="60px">
+                <MenuGroup title="Laptop" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
+                        <Flex>
+                        <MenuGroup title="OS" color="white" bg="black">
+                          <MenuItem bg="black">MacOs</MenuItem>
+                          <MenuItem bg="black">Windows</MenuItem>
+                          <MenuItem bg="black">Chrome OS</MenuItem>
+                        </MenuGroup>
+                        <MenuGroup title="Brand">
+                          <MenuItem bg="black">Apple</MenuItem>
+                          <MenuItem bg="black">HP</MenuItem>
+                          <MenuItem bg="black">Acer</MenuItem>
+                          <MenuItem bg="black">Lenovo</MenuItem>
+                          <MenuItem bg="black">Asus</MenuItem>
+                        </MenuGroup>
+                        </Flex>
+                    </MenuGroup>
+                    
+                    <MenuGroup title="Accessories" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                        <Flex>
+                        <MenuGroup title="Hardware" bg="black">
+                          <MenuItem bg="black">Keyboard</MenuItem>
+                          <MenuItem bg="black">Mouse</MenuItem>
+                          <MenuItem bg="black">Laptop bag</MenuItem>
+                          <MenuItem bg="black">Batteries</MenuItem>
+                          <MenuItem bg="black">Adapter</MenuItem>
+                        </MenuGroup>
+                        <MenuGroup title="Software">
+                          <MenuItem bg="black">OS</MenuItem>
+                          <MenuItem bg="black">Office</MenuItem>
+                          <MenuItem bg="black">Antivirus</MenuItem>
+                        </MenuGroup>
+                        </Flex>
+                    </MenuGroup>
                 </MenuList>
+                </Link>
             </Menu>
             <Menu>
                 <MenuButton>
