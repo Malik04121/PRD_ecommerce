@@ -4,7 +4,8 @@ const express=require("express")
 const {connection}=require("./config/db")
 require("dotenv").config()
 
-const { productroute } = require("./routes/Product_route")
+const { productroute } = require("./routes/Product_route");
+const { Userroute } = require("./routes/User_route");
 
 const app=express()
 app.use(
@@ -18,6 +19,7 @@ app.get("/",(req,res)=>{
     res.send("welcome to home page")
   })
 app.use("/product",productroute)
+app.use("/user",Userroute)
 
 app.listen(process.env.port,async()=>{
     try{
