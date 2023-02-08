@@ -12,7 +12,7 @@ import {
 //   RecaptchaVerifier,
 //   signInWithPhoneNumber,
 } from "firebase/auth";
-import { auth } from "../../Pages/Firebase_config";
+import { auth } from "../Firebase_config";
 import { useEffect } from "react";
 // import axios from "axios";
 

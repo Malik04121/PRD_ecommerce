@@ -6,10 +6,18 @@ const productroute=express.Router()
 
 productroute.get("/",async(req,res)=>{
     const query=req.query
-   
+     const min=req.query.minprice
+     const max=req.query.maxprice
     try{
-          const laptop=await ProductModel.find(query)
-          res.send(laptop)
+        if(min && max){
+            const laptop=await ProductModel.find({price:min})
+            res.send(laptop)
+        }
+        else{
+            const laptop=await ProductModel.find(query)
+            res.send(laptop)
+        }
+         
        }
        catch(err){
         //    console.log(err)
