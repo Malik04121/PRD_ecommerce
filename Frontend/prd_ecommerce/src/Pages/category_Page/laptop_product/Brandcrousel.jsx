@@ -1,4 +1,5 @@
 import { Box, Divider, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 
 
@@ -44,7 +45,9 @@ return(
         <SimpleGrid columns={3}  gap="20px" w="80%" m="auto" mt="30px">
             {/* <Flex> */}
                 {brand.map((ele)=>(
+                    <Link to={`/product/laptop/b ${ele.name}`}>
                     <Image src={ele.src} borderRadius="10px" />
+                    </Link>
                 ))}
                 {/* <Text>Appe</Text> */}
                 {/* <Text>Samsung</Text> */}

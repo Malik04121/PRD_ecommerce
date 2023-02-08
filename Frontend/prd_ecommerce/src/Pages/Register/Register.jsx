@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 // import {auth,provider} from "../../Pages/Firebase_config"
 // import { signInWithPopup } from "firebase/auth"
 // import { Form } from "react-router-dom"
-import { AuthContext } from "../Context/appcontext";
+import { AuthContext } from "../../Component/Context/appcontext";
 import axios from "axios"
 
 const formdata={

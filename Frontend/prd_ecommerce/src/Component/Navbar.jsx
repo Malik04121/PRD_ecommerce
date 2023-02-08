@@ -1,13 +1,14 @@
 import { Box, Button, Flex, Image, Input, InputGroup, InputRightElement, Menu, MenuButton, MenuItem, MenuList, Modal, Popover, Text, VStack } from "@chakra-ui/react"
-import {ChevronDownIcon, Search2Icon, SearchIcon} from "@chakra-ui/icons"
+import {ChevronDownIcon, PhoneIcon, Search2Icon, SearchIcon} from "@chakra-ui/icons"
 import {BiSearch} from "react-icons/bi"
 import {FiHeart} from "react-icons/fi"
 import {BsCart2} from "react-icons/bs"
 import {FaUserAlt} from "react-icons/fa"
 import logo from "../Assets/logo2_resize.png"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Subnavbar } from "./Subnavbar"
+import { AuthContext } from "./Context/appcontext"
 
 const data = [
   { id: 1, name: "John Doe" },
@@ -20,6 +21,13 @@ function Navbar(){
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen,setIsOpen]=useState(false)
   const [results, setResults] = useState([]);
+  const { googleSignIn,user,logOut,userName} = useContext(AuthContext)
+
+  console.log(userName,"user is this")
+  if(user==undefined){
+    console.log("udefined user")
+  }
+  
 
   const getsearchdata=()=>{
     console.log(searchTerm)
@@ -29,6 +37,10 @@ function Navbar(){
      .catch((err)=>(
         console.log(err)
      ))
+  }
+
+  const logouthandler=()=>{
+    logOut()
   }
 
   const handleChange =(e)=> {
@@ -49,12 +61,15 @@ function Navbar(){
                <Box h="60px" w="200px">
                 <Link to="/"> <Image src={logo} h="100%" w="100%"/></Link>
                </Box>
-               <Flex alignItems="center" color="white" w="330px">
+               <Flex alignItems="center" color="white" w="350px">
                  {/* <Input placeholder="Search for anything" color="white" /> */}
                  
+                 <InputGroup>
                  <Input placeholder="Search" type="text" value={searchTerm} onFocus={()=>setIsOpen(true)} onBlur={()=>setIsOpen(false)} onChange={handleChange}/>
+                 <InputRightElement children={<SearchIcon color="gray.300" borderRadius="16px" />}/>
+                 </InputGroup>
                  {isOpen && (
-        <Box position="fixed" top="60px" bg="#131212" color="white" w="300px" p="10px" >
+        <Box position="fixed" top="60px" bg="#131212" color="white" w="350px" p="10px" >
           {results.map(item => (
             <Text key={item.id} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" mt="5px">{item.name}</Text>
           ))}
@@ -72,7 +87,7 @@ function Navbar(){
         {/* </MenuList> */}
       {/* </Menu> */}  
                  
-                 <Flex h="40px" w="30px"  alignItems="center"><Button bg="red" ><BiSearch fontSize="50px"/></Button></Flex>
+                 {/* <Flex h="40px" w="30px"  alignItems="center" bg="black" border="1px solid white"><BiSearch fontSize="50px"/></Flex> */}
                </Flex>
             </Flex>
             
@@ -85,13 +100,26 @@ function Navbar(){
                   <FaUserAlt size="1.3rem"/>
                   
                   <Menu bg="black">
-                    <MenuButton>Login</MenuButton>
-                    <MenuList bg="black" p="5px" ml="-50px" >
-                      <Button bg="red"><Link to="/login">SignIn</Link></Button>
+                    <MenuButton>{user?user.displayName:userName?userName:"Login"}</MenuButton>
+                    <MenuList bg="black" p="5px" ml="-50px"  >
+                      {user?
+                      // <Box w="70%"  m="auto">
+                      <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
+                      // </Box>:
+                      :
+                       userName?
+                      <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
+                       :
+                      <Box>
+                      <Box w="70%"  m="auto">
+                      <Button  w="100%" bg="#353535"><Link to="/login">SignIn</Link></Button>
+                      </Box>
                       <Flex gap="10px">
                         <Text>New Customer?</Text>
                         <Text color="red"><Link to="/register">SignUp</Link></Text>
                       </Flex>
+                      </Box>
+                        }
                       
                     </MenuList>
                   </Menu>  
