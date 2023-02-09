@@ -29,12 +29,12 @@ function LaptopcategoryCraousel(){
           items: 4
         },
         tablet: {
-          breakpoint: { max: 1024, min: 464 },
+          breakpoint: { max: 1023, min: 464 },
           items: 2
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
-          items: 1
+          items: 2
         }
       };
 
@@ -48,14 +48,14 @@ return(
         </Box>
          <Heading size="md" color="white" as="h6">Best Selling Laptops</Heading>
         </Flex> 
-    <Box className="categorycrausel">
+    <Box  pr={{base:"15px",md:"40px",lg:"80px"}} pl={{base:"15px",md:"40px",lg:"80px"}} bg="#1B1B1B">
         
        <Carousel responsive={responsive}
     //  autoPlay={true}
      infinite={true}
      >
        {laptopdata.map((ele)=>(
-    <Box   mr="20px" ml="0px"  color="white" bg="#4B4B4B" mt="20px">
+    <Box   mr="10px" ml="10px"  color="white" bg="#4B4B4B" mt="20px">
         <Box >
           <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1}/>   
           </Box> 

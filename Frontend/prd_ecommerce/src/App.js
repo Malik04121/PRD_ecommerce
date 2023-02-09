@@ -7,11 +7,13 @@ import { Navbar } from './Component/Navbar';
 
 import { Box } from '@chakra-ui/layout';
 import { MainRoute } from './Component/Route';
+import { Cart } from './Pages/Cart/cart';
 
 function App() {
   return (
-   <Box className="body">
+   <Box >
    <Navbar/>
+   {/* <Cart/> */}
    {/* <Subnavbar/> */}
    {/* <Landingpage/> */}
    <MainRoute/>

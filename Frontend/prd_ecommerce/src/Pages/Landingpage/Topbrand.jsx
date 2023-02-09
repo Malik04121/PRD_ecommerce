@@ -64,7 +64,7 @@ return(
         </Box>
          <Heading size="md" color="white" as="h6">Top Brand</Heading>
         </Flex> 
-        <SimpleGrid columns={6}  gap="0px" mr="100px" ml="100px" mt="30px">
+        <SimpleGrid columns={{base:3,md:4,lg:6}}  gap="0px" mr={{base:"30px",md:"50px",lg:"100px"}} ml={{base:"30px",md:"50px",lg:"100px"}}  mt="30px">
             {/* <Flex> */}
                 {brand.map((ele)=>(
                     <Image src={ele.src}  />
