@@ -17,8 +17,8 @@ function Laptopcrousel(){
           items: 1
         },
         tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2
+          breakpoint: { max: 1023, min: 464 },
+          items: 1
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
@@ -29,20 +29,20 @@ function Laptopcrousel(){
 
  return(
   <>
-     <Carousel responsive={responsive}
+<Carousel responsive={responsive}
      autoPlay={true}
      infinite={true}
-     h="500px"
+     h="5000px"
      bg="#353535"
      
      >
        {ItemDetails1.map((ele)=>(
-    <Box bg="#353535"  >
-      <Image src={ele.img}/>  
+    <Box bg="#353535" h={{base:"100px",md:"200px",lg:"300px"}} >
+      <Image src={ele.img} h="100%"/>  
     </Box>
   ))}
   
-   </Carousel>
+</Carousel>
     </>
 )
 

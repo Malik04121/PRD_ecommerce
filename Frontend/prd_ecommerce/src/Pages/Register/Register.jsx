@@ -4,7 +4,7 @@ import { Box, Flex, Text,Form, FormLabel, Toast, useToast } from "@chakra-ui/rea
 import {FcGoogle} from "react-icons/fc"
 import {BsFacebook} from "react-icons/bs"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 // import {auth,provider} from "../../Pages/Firebase_config"
 // import { signInWithPopup } from "firebase/auth"
 // import { Form } from "react-router-dom"
@@ -104,7 +104,7 @@ const inputhandler=(e)=>{
 return(
     <>
        <Box border="1px solid black"  bg="black" >  
-  <Box w="30%" m="auto" mt="70px" borderRadius="10px" bg="white" mb="95px" color="black" p="25px" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
+  <Box w={{base:"70%",md:"50%",lg:"30%"}} m="auto" mt={{base:"30px",md:"50px",lg:"70px"}} borderRadius="10px" bg="white" mb="95px" color="black" p="25px" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
     <Box>
         <Flex justifyContent="space-between">
             <Text fontSize="lg" as="b">SIGN UP</Text>
@@ -133,7 +133,9 @@ return(
     </Flex>
     <Flex mt="20px" justifyContent="center" gap="5px">
         <Text>Existing User?</Text>
+        <Link to="/login">
         <Text color="red">Login</Text>
+        </Link>
     </Flex>
     </Box>
   </Box>

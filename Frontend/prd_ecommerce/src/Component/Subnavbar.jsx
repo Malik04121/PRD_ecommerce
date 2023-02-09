@@ -6,7 +6,7 @@ function Subnavbar(){
 
     return(
         <>
-          <Flex justifyContent="space-between" h="40px" color="white" bg="#353535" pl="30px" pr="30px">
+          <Flex justifyContent="space-between" h="40px" color="white" bg="#353535" pl="30px" pr="30px" display={{base:"none",md:"flex"}}>
             <Menu>
                 <MenuButton color="white">Mobiles & Tablets</MenuButton>
                 <Link to="/mobile">

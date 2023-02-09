@@ -88,7 +88,7 @@ function Login(){
   // }
 return(
   <Box border="1px solid black"  bg="black" >  
-  <Box w="30%" m="auto" mt="70px" borderRadius="10px" bg="white" mb="95px" color="black" p="25px" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
+  <Box w={{base:"70%",md:"50%",lg:"30%"}} m="auto" mt={{base:"30px",md:"50px",lg:"70px"}} borderRadius="10px" bg="white" mb="95px" color="black" p="25px" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
     <Box>
         <Flex justifyContent="space-between">
             <Text fontSize="lg" as="b">LOGIN</Text>

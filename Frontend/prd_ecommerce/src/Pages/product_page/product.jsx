@@ -16,6 +16,9 @@ import {
     SliderFilledTrack,
     SliderThumb,
     useToast,
+    Menu,
+    MenuButton,
+    MenuList,
   } from "@chakra-ui/react";
   import { Link, useParams } from "react-router-dom";
   import axios from "axios";
@@ -90,15 +93,18 @@ import { LaptopFilter } from "./laptop_filter";
       });
   
       axios
-        .post(`http://localhost:8080/cart`, prod)
+        .post(`https://red-houndstooth.cyclic.app/cart/post`, prod)
         .then((res) => console.log(res.data));
     };
     useEffect(() => {
     //   getCat();
       getProd();
     }, [checkboxvalue]);
+
+    console.log(proddata[0])
     return (
-      <Box bg="#1B1B1B" >
+      <>
+      <Box bg="#1B1B1B" display={["none","block","block"]} >
         <Flex pr="8%" pl="8%" gap="3%">
           <Box w="30%" h="200px" >
             <Flex mt="1rem" mb="1rem" justifyContent="space-between" color="white">
@@ -181,7 +187,7 @@ import { LaptopFilter } from "./laptop_filter";
           </Box>  */} 
 
 
-          <Box w="100%" mb="250px">
+          <Box w="100%" mb="250px" >
             <Box p="0.8%" w="16%" mt="1rem" mb="1rem" bg="#FAFAFA">
               <Flex justifyContent="space-between">
                 <Text fontSize="lg" textTransform="capitalize">
@@ -243,6 +249,44 @@ import { LaptopFilter } from "./laptop_filter";
           </Box>
         </Flex>
       </Box>
+
+      <Box display={{base:"block",lg:"none"}} bg="#1B1B1B" color="white">
+        <Flex justifyContent="space-between">
+          <Button color="#1B1B1B">Sort</Button>
+          <Menu>
+            <MenuButton>Filter</MenuButton>
+            <MenuList>
+            </MenuList>
+          </Menu>
+
+        </Flex>
+        <Box>
+           <SimpleGrid gap="10px">
+            {proddata.map((item)=>(
+                 <Flex  gap="20px">
+                 <Box  w="40%" justifyContent="center">
+                   <Image w="100%" src={item.image1}/>
+                   <Button color="#1B1B1B"  size="sm" mr="20px" ml="20px" onClick={() => Carthandler(item)}>Add To Cart</Button>
+                 </Box>
+                 <Box w="80%">
+                   <Text>{item.name}</Text>
+                   <Flex>
+                    <Text>₹{item.price}</Text>
+                    <Text>₹{item.discount}</Text>
+                    <Text>₹{item.discount}</Text>
+                    <Text>Discount percentage</Text>
+                   </Flex>
+                 </Box>
+               </Flex>
+            ))
+
+            }
+             
+
+           </SimpleGrid>
+        </Box>
+      </Box>
+      </>
     );
   }
   export default Product;

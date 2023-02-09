@@ -7,6 +7,7 @@ import {Landingpage} from "../Pages/Landingpage/Landingpage"
 import {LaptopProduct} from "../Pages/category_Page/laptop_product/laptopproduct"
 import {MobileProduct} from "../Pages/category_Page/Mobile_product/Mobile"
 import Product from "../Pages/product_page/product";
+import { Cart } from "../Pages/Cart/cart";
 
 
 function MainRoute(){
@@ -19,6 +20,7 @@ return(
         <Route path="/register" element={<Register/>}/>
         <Route path="/laptop" element={<LaptopProduct/>}/>
         <Route path="/mobile" element={<MobileProduct/>}/>
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="/product/:param/:para" element={<Product/>}/>
         
 
