@@ -9,7 +9,7 @@ import { TopBrand } from "./Topbrand"
 function Landingpage(){
 
 return(
-    <Box bg="#1B1B1B">
+    <Box bg="#1B1B1B" pb="30px">
       <Craousel />
       <CategoryCarousel />
       <LaptopcategoryCraousel/>

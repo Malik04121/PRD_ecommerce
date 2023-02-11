@@ -8,6 +8,7 @@ import { Navbar } from './Component/Navbar';
 import { Box } from '@chakra-ui/layout';
 import { MainRoute } from './Component/Route';
 import { Cart } from './Pages/Cart/cart';
+import Footer from './Component/Footer/footer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
    {/* <Subnavbar/> */}
    {/* <Landingpage/> */}
    <MainRoute/>
+   <Footer/>
    </Box>
   );
 }

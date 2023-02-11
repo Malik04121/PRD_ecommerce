@@ -59,7 +59,7 @@ function Navbar(){
         <>
 {/* //new navbar */}
 
-          <Flex gap="10%" bg="black" pt="15px" pb="15px" pr="3%" pl="6%" display={{base:"none",md:"flex"}}>
+          <Flex gap="10%" bg="black" pt="15px" pb="15px" pr="3%" pl="6%" display={{base:"none",md:"flex"}} position="sticky" top="0px" zIndex="1000">
             <Flex gap="10%" w="60%"  >
                <Box h="60px" w="40%">
                 <Link to="/"> <Image src={logo} h="100%" w="100%"/></Link>

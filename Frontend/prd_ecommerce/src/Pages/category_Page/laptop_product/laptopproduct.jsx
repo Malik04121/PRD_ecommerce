@@ -8,7 +8,7 @@ import { OsCraousel } from "./Oscrousel"
 function LaptopProduct(){
 
 return(
-    <Box bg="#1B1B1B">
+    <Box bg="#1B1B1B" pb="30px">
       <Laptopcrousel/>
       <OsCraousel/>
       <BrandCrousel/>
