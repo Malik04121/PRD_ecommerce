@@ -20,7 +20,7 @@ import {
     MenuButton,
     MenuList,
   } from "@chakra-ui/react";
-  import { Link, useParams } from "react-router-dom";
+  import { Link, useNavigate, useParams } from "react-router-dom";
   import axios from "axios";
   import { useContext, useEffect, useState } from "react";
   import { CiFilter } from "react-icons/ci";
@@ -29,9 +29,11 @@ import { LaptopFilter } from "./laptop_filter";
 //   import { CityContext } from "../../Context/CityContext";
 //   import Subnavbar from "./Subnavbar";
   import "./category.css";
+import { AuthContext } from "../../Component/Context/appcontext";
   
   function Product() {
     // const { city } = useContext(CityContext);
+    const {Id}=useContext(AuthContext)
     const { param } = useParams();
     const { para } = useParams();
     const { id } = useParams();
@@ -43,7 +45,8 @@ import { LaptopFilter } from "./laptop_filter";
     const [sliderValue, setSliderValue] = useState(6);
     const [checkboxvalue, setCheckboxvalue] = useState(para.slice(2));
     const toast = useToast();
-    console.log(para,"para is")
+    const navigate=useNavigate()
+    // console.log(para,"para is")
     const labelStyles = {
       mt: "2",
       ml: "-2.5",
@@ -72,36 +75,44 @@ import { LaptopFilter } from "./laptop_filter";
     };
   
     const checkboxhandler = (e, index) => {
-      console.log(index);
+      // console.log(index);
       setCheckboxvalue(e.target.value);
       // console.log(e.target.value);
     };
   
     const Carthandler = (prod) => {
-      // axios
-      //   .get(`http://localhost:8080/furniture/${id}`)
-      //   .then((res) => setItem(res.data));
-      // setItem(prod)
-      // console.log(prod)
-  
-      toast({
-        position: "top",
-        title: "Item successfully Added to Cart",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-  
+      if(Id){
       axios
-        .post(`https://red-houndstooth.cyclic.app/cart/post`, prod)
-        .then((res) => console.log(res.data));
+        .patch(`https://red-houndstooth.cyclic.app/user/update/${Id}`,prod)
+        .then((res) => console.log(res));
+        toast({
+          position: "top",
+          title: "Item successfully Added to Cart",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+
+      }
+      else{
+        toast({
+          position: "top",
+          title: "User is not logged in please Login First!",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          bg:"red"
+        });
+        navigate("/login")
+      }
     };
+
     useEffect(() => {
     //   getCat();
+    console.log(id)
       getProd();
     }, [checkboxvalue]);
 
-    console.log(proddata[0])
     return (
       <>
       <Box bg="#1B1B1B" display={["none","block","block"]} pb="30px" >
@@ -117,74 +128,12 @@ import { LaptopFilter } from "./laptop_filter";
               </Button>
             </Flex>
   
-            {/* <Box border="1px solid #e6e6e6" p="8%">
-              <Text>CHOOSE RENTAL TENURE</Text>
-              <Slider
-                aria-label="slider-ex-6"
-                min={3}
-                max={12}
-                onChange={(val) => setSliderValue(val)}
-              >
-                <SliderMark value={3} {...labelStyles}>
-                  3+
-                </SliderMark>
-                <SliderMark value={6} {...labelStyles}>
-                  6+
-                </SliderMark>
-                <SliderMark value={9} {...labelStyles}>
-                  9+
-                </SliderMark>
-                <SliderMark value={12} {...labelStyles}>
-                  12+
-                </SliderMark>
-                {/* <SliderMark
-            value={sliderValue}
-            textAlign='center'
-            bg='blue.500'
-            color='white'
-            mt='-10'
-            ml='-5'
-            w='12'
-          >
-            {sliderValue}
-                      </SliderMark> */}
-                {/* <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-            </Box> */}
-  
-            {/* <Box border="1px solid #e6e6e6" p="8%" mt="2rem">
-              <Text fontSize="lg" mb="1rem">
-                PRODUCT TYPE
-              </Text>
-              {catData.map((ele, index) => (
-                <Flex mt="1rem">
-                  {/* <Input type="radio"/> */}
-                  {/* <Checkbox
-                    textTransform="capitalize"
-                    onChange={(e) => checkboxhandler(e, index)}
-                    value={ele.name}
-                  >
-                    {ele.name}
-                  </Checkbox>
-                </Flex>
-              ))} */}
+            
             {param=="laptop"?
               <LaptopFilter checkbox={checkboxvalue} setcheckbox={setCheckboxvalue} filter={setFiltertype}/>
             :console.log("not")}
             </Box>
 
-  
-            {/* <Box p="8%" border="1px solid #e6e6e6" mt="2rem">
-              <Text fontSize="lg">AVAILABILITY</Text>
-  
-              <Checkbox mt="1rem" defaultChecked value="Out of Stock">
-                Out of Stock
-              </Checkbox>
-            </Box>
-          </Box>  */} 
 
 
           <Box w="100%" mb="250px" >

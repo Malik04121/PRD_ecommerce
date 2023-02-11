@@ -13,6 +13,7 @@ const ProductSchema=mongoose.Schema({
         type:Number,
         required:true
     },
+    discountedPrice:Number,
     category:{
         type:String,
         required:true

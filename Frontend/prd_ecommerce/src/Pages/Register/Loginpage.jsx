@@ -9,13 +9,14 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Component/Context/appcontext";
 import axios from "axios"
 import { useContext, useState } from "react"
+import { setUserId } from "firebase/analytics"
 
 function Login(){
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const toast=useToast()
   const navigate=useNavigate()
-  const { googleSignIn,setUserName,userLogin} = useContext(AuthContext)
+  const { googleSignIn,setUserName,userLogin,setId} = useContext(AuthContext)
 
   const googleauth=async(e)=>{
     e.preventDefault();
@@ -64,6 +65,7 @@ function Login(){
          axios.post("https://red-houndstooth.cyclic.app/user/login", payload).then((res)=>{
           console.log(res,"resobject is")
         setUserName(res.data.displayName)
+        setId(res.data.id)
         
         const user=(res)
         userLogin(res.data.token)

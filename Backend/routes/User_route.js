@@ -3,13 +3,15 @@ const express=require("express")
 const { UserModel } = require("../models/user_model")
 require("dotenv").config()
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken')
+const jwt=require('jsonwebtoken');
+const { authenticate } = require("../middleware/userAuthentication");
 
 const Userroute=express.Router()
 
 Userroute.get("/",async(req,res)=>{
+  // let query=req.query
     try{
-       const userdata=await UserModel.find()
+       const userdata=await UserModel.find(req.query)
        res.send(userdata)
     }
     catch(err){
@@ -57,7 +59,7 @@ Userroute.post("/login",async(req,res)=>{
        bcrypt.compare(password,user[0].password,(err,result)=>{
          if(result){
              const token = jwt.sign( { userID: user[0]._id }, process.env.secret_key);
-            res.send({"msg":"Login successfully","token":token,displayName:user[0].username})
+            res.send({"msg":"Login successfully","token":token,displayName:user[0].username,cartData:user[0].cart,wishlistData:user[0].wishlist,id:user[0]._id})
      
          }
          else{
@@ -72,9 +74,21 @@ Userroute.post("/login",async(req,res)=>{
     catch(err){
      console.log(err)
     }
-    
- 
  })
+ Userroute.patch("/update/:id",authenticate,async(req,res)=>{
+  const payload=req.body
+   
+  const id=req.params.id
+  try{
+      await UserModel.findByIdAndUpdate({"_id":id},{$push:{"cart":payload}})
+
+      res.send("data is updated")
+  }
+  catch(err){
+      console.log(err)
+  }
+})
+
 // Userroute.post("/login",async(req,res)=>{
 
 // })
