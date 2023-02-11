@@ -104,7 +104,7 @@ import { LaptopFilter } from "./laptop_filter";
     console.log(proddata[0])
     return (
       <>
-      <Box bg="#1B1B1B" display={["none","block","block"]} >
+      <Box bg="#1B1B1B" display={["none","block","block"]} pb="30px" >
         <Flex pr="8%" pl="8%" gap="3%">
           <Box w="30%" h="200px" >
             <Flex mt="1rem" mb="1rem" justifyContent="space-between" color="white">
