@@ -21,6 +21,7 @@ export const AuthContext = React.createContext();
 export default function AuthContextProvider({ children }) {
     const [user, setUser] = useState({});
     const [userName,setUserName] = useState('')
+    const [Id,setId]=useState("")
     const [user_Auth,set_Auth]=useState({
       user_Auth:false,
       token:null
@@ -31,6 +32,7 @@ export default function AuthContextProvider({ children }) {
     }
     function logOut() {
       setUserName('')
+      setId("")
       return signOut(auth);
     }
    
@@ -65,7 +67,7 @@ export default function AuthContextProvider({ children }) {
   
     return (
       <AuthContext.Provider
-        value={{ user, logOut, googleSignIn,user_Auth,userLogin,setUserName,userName}}
+        value={{ user, logOut, googleSignIn,user_Auth,userLogin,setUserName,userName,Id,setId}}
       >
         {children}
       </AuthContext.Provider>

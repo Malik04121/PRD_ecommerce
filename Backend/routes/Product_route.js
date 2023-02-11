@@ -1,10 +1,11 @@
 const express=require("express")
+const { authenticate } = require("../middleware/userAuthentication")
 const { ProductModel } = require("../models/Product_model")
 
 const productroute=express.Router()
 
-
-productroute.get("/",async(req,res)=>{
+// productroute.use(authenticate)
+productroute.get("/",authenticate,async(req,res)=>{
     const query=req.query
      const min=req.query.minprice
      const max=req.query.maxprice

@@ -10,7 +10,9 @@ const UserSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    phone:Number
+    phone:Number,
+    cart:[],
+    wishlist:[]
 
 })
 const UserModel=mongoose.model("User",UserSchema)

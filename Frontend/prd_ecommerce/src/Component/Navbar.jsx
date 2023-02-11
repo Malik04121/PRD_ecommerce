@@ -32,7 +32,7 @@ function Navbar(){
 
   const getsearchdata=()=>{
     console.log(searchTerm)
-    fetch(`http://localhost:3200/product`)
+    fetch(`https://red-houndstooth.cyclic.app/product`)
      .then(res=>res.json())
      .then(res=>setResults(res))
      .catch((err)=>(
