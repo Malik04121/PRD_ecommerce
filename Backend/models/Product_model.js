@@ -13,7 +13,7 @@ const ProductSchema=mongoose.Schema({
         type:Number,
         required:true
     },
-    discountedPrice:Number,
+    originalPrice:Number,
     category:{
         type:String,
         required:true

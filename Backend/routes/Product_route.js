@@ -5,7 +5,7 @@ const { ProductModel } = require("../models/Product_model")
 const productroute=express.Router()
 
 // productroute.use(authenticate)
-productroute.get("/",authenticate,async(req,res)=>{
+productroute.get("/",async(req,res)=>{
     const query=req.query
      const min=req.query.minprice
      const max=req.query.maxprice
@@ -24,10 +24,10 @@ productroute.get("/",authenticate,async(req,res)=>{
         //    console.log(err)
            res.send(error)
        }
-    
+
 })
 
-productroute.post("/post",async(req,res)=>{
+productroute.post("/post",authenticate,async(req,res)=>{
     const payload=req.body
     try{
       const new_laptop=new ProductModel(payload)
