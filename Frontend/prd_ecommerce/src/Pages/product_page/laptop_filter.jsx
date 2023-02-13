@@ -23,7 +23,7 @@ return(
             
             <CheckboxGroup colorScheme='green' defaultValue={checkbox} >
                 <Stack spacing={[1, 5]} direction={['column', 'column']} mt="1rem">
-                  <Checkbox value='MacOS' onChange={checkboxhandler1}>MacOS</Checkbox>
+                  <Checkbox value='MacOs' onChange={checkboxhandler1}>MacOS</Checkbox>
                    <Checkbox value='Windows' onChange={checkboxhandler1}>Windows</Checkbox>
                   <Checkbox value='Chrome OS' onChange={checkboxhandler1} >Chrome OS</Checkbox>
                 </Stack>
@@ -33,7 +33,7 @@ return(
            <Text fontSize="xl" as="b">Brand</Text>
            <CheckboxGroup colorScheme='green' defaultValue={checkbox}>
                 <Stack spacing={[1, 5]} direction={['column', 'column']} mt="1rem">
-                  <Checkbox value='Macbook' onChange={checkboxhandler2}>Macbook</Checkbox>
+                  <Checkbox value='Apple' onChange={checkboxhandler2}>Apple</Checkbox>
                    <Checkbox value='Hp' onChange={checkboxhandler2}>HP</Checkbox>
                   <Checkbox value='Lenovo' onChange={checkboxhandler2} >Lenovo</Checkbox>
                   <Checkbox value='Asus' onChange={checkboxhandler2} >Asus</Checkbox>
