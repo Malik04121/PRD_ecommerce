@@ -70,8 +70,6 @@ import { AuthContext } from "../../Component/Context/appcontext";
         .get(`https://red-houndstooth.cyclic.app/product?type=laptop&brand=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
-
-
     };
   
     const checkboxhandler = (e, index) => {
