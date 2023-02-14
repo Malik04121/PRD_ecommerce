@@ -26,7 +26,7 @@ export const Categorydetails=[
     },{
         img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991659/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/AC_gw4ktn.png/mxw_1440,f_auto",
         caption:"AC",
-        name:""
+        name:"AC"
     },{
         img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991657/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/Ref_jmphdw.png/mxw_1440,f_auto",
         caption:"Refrigerator",
@@ -34,7 +34,7 @@ export const Categorydetails=[
     },
     {
         img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991658/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/WM_a9evzk.png/mxw_1440,f_auto",
-        caption:"",
+        caption:"WashingMachine",
         name:""
     },
     {
