@@ -8,7 +8,7 @@ function Subnavbar(){
         <>
           <Flex justifyContent="space-between" h="40px" color="white" bg="#353535" pl="30px" pr="30px" display={{base:"none",md:"flex"}}>
             <Menu>
-                <MenuButton color="white">Mobiles & Tablets</MenuButton>
+                <MenuButton color="white" >Mobiles & Tablets</MenuButton>
                 <Link to="/mobile">
                 <MenuList display="flex" color="white" bg="black" gap="50px">
                     <MenuGroup title="Mobile" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
@@ -50,7 +50,7 @@ function Subnavbar(){
                 <MenuButton color="white">
                     Television
                 </MenuButton>
-                <Link to="/laptop">
+                <Link to="/television">
                 <MenuList display="flex" bg="black" gap="60px">
                 <MenuGroup title="Television" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
                         <Flex>
@@ -126,34 +126,87 @@ function Subnavbar(){
                 <MenuButton>
                     Air Conditioners
                 </MenuButton>
-                <MenuList display="flex">
 
+                <Link to="/Ac">
+                <MenuList display="flex" bg="black" gap="60px">
+                <MenuGroup title="Category" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
+                          <MenuItem bg="black">Window AC</MenuItem>
+                          <MenuItem bg="black">Split AC</MenuItem>
+                          <MenuItem bg="black">Portable AC</MenuItem>
+                          <MenuItem bg="black">Hot & Cold AC</MenuItem>
+                    </MenuGroup>
+        
+                    
+                    <MenuGroup title="Brand" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                        
+                          <MenuItem bg="black">Samsung</MenuItem>
+                          <MenuItem bg="black">Whirlpool</MenuItem>
+                          <MenuItem bg="black">BlueStar</MenuItem>
+                          <MenuItem bg="black">LG</MenuItem>
+                          <MenuItem bg="black">Voltas</MenuItem>
+                       
+                    </MenuGroup>
                 </MenuList>
+                </Link>
             </Menu>
             <Menu>
                 <MenuButton>
                     Refrigerator
                 </MenuButton>
-                <MenuList display="flex">
-
+                <Link to="refrigerator">
+                <MenuList display="flex" bg="black" gap="60px">
+                <MenuGroup title="Category" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
+                          <MenuItem bg="black">Single Door</MenuItem>
+                          <MenuItem bg="black">Double Door</MenuItem>
+                          <MenuItem bg="black">Side by Side </MenuItem>
+                          <MenuItem bg="black">French Door</MenuItem>
+                    </MenuGroup>
+        
+                    
+                    <MenuGroup title="Brand" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                        
+                          <MenuItem bg="black">Samsung</MenuItem>
+                          <MenuItem bg="black">Whirlpool</MenuItem>
+                          <MenuItem bg="black">Bosch</MenuItem>
+                          <MenuItem bg="black">LG</MenuItem>
+                       
+                    </MenuGroup>
                 </MenuList>
+                </Link>
             </Menu>
             <Menu>
                 <MenuButton>
                     Washing Machine
                 </MenuButton>
-                <MenuList display="flex">
-
+                <Link to="WashingMachine">
+                <MenuList display="flex" bg="black" gap="60px">
+                <MenuGroup title="Category" textAlign="center" textDecoration="underline" textDecorationThickness="2px" >
+                          <MenuItem bg="black">Semi Automatic</MenuItem>
+                          <MenuItem bg="black">Top Load fully Automatic</MenuItem>
+                          <MenuItem bg="black">Front Loaded</MenuItem>
+                          <MenuItem bg="black">Fully Automatic</MenuItem>
+                    </MenuGroup>
+        
+                    
+                    <MenuGroup title="Brand" textAlign="center" textDecoration="underline" textDecorationThickness="2px">
+                        
+                          <MenuItem bg="black">Samsung</MenuItem>
+                          <MenuItem bg="black">Whirlpool</MenuItem>
+                          <MenuItem bg="black">Bosch</MenuItem>
+                          <MenuItem bg="black">LG</MenuItem>
+                       
+                    </MenuGroup>
                 </MenuList>
+                </Link>
             </Menu>
-            <Menu>
+            {/* <Menu>
                 <MenuButton color="white">
                     Wearables
                 </MenuButton>
                 <MenuList display="flex">
 
                 </MenuList>
-            </Menu>
+            </Menu> */}
           </Flex>
         </>
     )

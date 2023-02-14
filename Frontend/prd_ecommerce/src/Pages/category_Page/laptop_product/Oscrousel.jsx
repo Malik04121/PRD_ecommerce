@@ -12,7 +12,7 @@ return(
          <Divider orientation="horizontal" borderColor="#33FF83" borderWidth="1.5px" mt="8px" />
          <Divider orientation="horizontal" borderColor="#33FF83" mt="5px" borderWidth="1.5px"/>
         </Box>
-         <Heading size="md" color="white" as="h6">Best Selling Laptops</Heading>
+         <Heading size="md" color="white" as="h6">Laptops Based on OS </Heading>
         </Flex> 
         <Flex w={{base:"92%",md:"85%",lg:"70%"}} m="auto" mt="20px" >
             <Box>

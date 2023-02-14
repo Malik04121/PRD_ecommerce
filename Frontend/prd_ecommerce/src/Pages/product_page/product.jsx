@@ -30,6 +30,7 @@ import { LaptopFilter } from "./laptop_filter";
 //   import Subnavbar from "./Subnavbar";
   import "./category.css";
 import { AuthContext } from "../../Component/Context/appcontext";
+import { MobileFilter } from "./Mobile_filter";
   
   function Product() {
     // const { city } = useContext(CityContext);
@@ -62,12 +63,12 @@ import { AuthContext } from "../../Component/Context/appcontext";
     const getProd = () => {
         if(para[0]=="c" || filtertype=="category"){
             axios
-        .get(`https://red-houndstooth.cyclic.app/product?type=laptop&category=${checkboxvalue}`)
+        .get(`https://red-houndstooth.cyclic.app/product?type=${param}&category=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
-        else if(para[0]=="b" || filtertype=="brand"){
+        if(para[0]=="b" || filtertype=="brand"){
             axios
-        .get(`https://red-houndstooth.cyclic.app/product?type=laptop&brand=${checkboxvalue}`)
+        .get(`https://red-houndstooth.cyclic.app/product?type=${param}&brand=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
     };
@@ -130,6 +131,9 @@ import { AuthContext } from "../../Component/Context/appcontext";
             {param=="laptop"?
               <LaptopFilter checkbox={checkboxvalue} setcheckbox={setCheckboxvalue} filter={setFiltertype}/>
             :console.log("not")}
+            {param=="Mobile"?
+                          <MobileFilter checkbox={checkboxvalue} setcheckbox={setCheckboxvalue} filter={setFiltertype}/>
+                          :console.log("not")}
             </Box>
 
 
@@ -173,8 +177,8 @@ import { AuthContext } from "../../Component/Context/appcontext";
                         bg="red"
                       />
                       <Flex justifyContent="space-between">
-                        <Text fontSize="lg">Price:-₹{prod.price}</Text>
-                        <Text>{prod.discount} </Text>
+                        <Text fontSize="lg">Price:- &nbsp;₹ {prod.price}</Text>
+                        <Text>Original Price:- &nbsp;₹ <Text as='s'>{prod.originalPrice}</Text> </Text>
                       </Flex>
                     </Box>
                   {/* </Link> */}
