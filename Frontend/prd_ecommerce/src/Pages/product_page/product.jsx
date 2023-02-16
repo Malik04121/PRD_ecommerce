@@ -31,10 +31,13 @@ import { LaptopFilter } from "./laptop_filter";
   import "./category.css";
 import { AuthContext } from "../../Component/Context/appcontext";
 import { MobileFilter } from "./Mobile_filter";
+import { useSelector } from "react-redux";
   
   function Product() {
     // const { city } = useContext(CityContext);
-    const {Id}=useContext(AuthContext)
+    const Id=useSelector((store)=>store.id)
+    const Token=useSelector((store)=>store.token)
+    // const {Id,user_Auth}=useContext(AuthContext)
     const { param } = useParams();
     const { para } = useParams();
     const { id } = useParams();
@@ -60,6 +63,8 @@ import { MobileFilter } from "./Mobile_filter";
     //     .then((res) => setCatData(res.data))
     //     .catch((e) => console.log(e));
     // };
+
+    // console.log(user_Auth.token,"token is this")
     const getProd = () => {
         if(para[0]=="c" || filtertype=="category"){
             axios
@@ -82,8 +87,12 @@ import { MobileFilter } from "./Mobile_filter";
     const Carthandler = (prod) => {
       if(Id){
       axios
-        .patch(`https://red-houndstooth.cyclic.app/user/update/${Id}`,prod)
-        .then((res) => console.log(res));
+        .patch(`https://red-houndstooth.cyclic.app/user/update/${Id}`,prod,{
+          headers:{
+            "Authorization":Token
+          }
+        })
+        .then((res) => console.log(res,"res is this"));
         toast({
           position: "top",
           title: "Item successfully Added to Cart",
@@ -108,7 +117,7 @@ import { MobileFilter } from "./Mobile_filter";
 
     useEffect(() => {
     //   getCat();
-    console.log(id)
+    // console.log(id)
       getProd();
     }, [checkboxvalue]);
 
