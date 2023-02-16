@@ -9,6 +9,8 @@ import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { Subnavbar } from "./Subnavbar"
 import { AuthContext } from "./Context/appcontext"
+import { useDispatch, useSelector } from "react-redux"
+import { logoutSuccess } from "./Redux/authreducer/action"
 
 const data = [
   { id: 1, name: "John Doe" },
@@ -19,19 +21,19 @@ const data = [
 
 function Navbar(){
   const [searchTerm, setSearchTerm] = useState("");
+  const isAuth=useSelector((store)=>store.isAuth)
+  const user=useSelector((store)=>store.user)
+  const dispatch=useDispatch()
+
+
   const [isopen,setIsOpen]=useState(false)
   const [results, setResults] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { googleSignIn,user,logOut,userName} = useContext(AuthContext)
+  // const { googleSignIn,user,logOut,userName} = useContext(AuthContext)
 
-  console.log(userName,"user is this")
-  if(user==undefined){
-    console.log("udefined user")
-  }
   
-
   const getsearchdata=()=>{
-    console.log(searchTerm)
+    // console.log(searchTerm)
     fetch(`https://red-houndstooth.cyclic.app/product`)
      .then(res=>res.json())
      .then(res=>setResults(res))
@@ -39,13 +41,15 @@ function Navbar(){
         console.log(err)
      ))
   }
-
+ console.log(isAuth,'coditin of isauth')
   const logouthandler=()=>{
-    logOut()
+    // isAuth=false
+     dispatch(logoutSuccess())
+      // console.log(isAuth,"2nd is auth")
   }
 
   const handleChange =(e)=> {
-    console.log("eloo")
+    // console.log("eloo")
     setSearchTerm(e.target.value);
     getsearchdata()
     const filteredResults = data.filter(item =>
@@ -89,16 +93,16 @@ function Navbar(){
                 <Flex alignItems="center" color="white" gap="7px">
                   <FaUserAlt size="1.3rem"/>
                   <Menu bg="black">
-                    <MenuButton>{user?user.displayName:userName?userName:"Login"}</MenuButton>
+                    <MenuButton>{isAuth?user.username:"Login"}</MenuButton>
                     <MenuList bg="black" p="5px" ml="-50px"  >
-                      {user?
+                      {isAuth?
                       // <Box w="70%"  m="auto">
                       <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
                       // </Box>:
                       :
-                       userName?
-                      <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
-                       :
+                      //  userName?
+                      // <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
+                      //  :
                       <Box>
                       <Box w="70%"  m="auto">
                       <Button  w="100%" bg="#353535"><Link to="/login">SignIn</Link></Button>
@@ -154,16 +158,17 @@ function Navbar(){
                 <Flex alignItems="center" color="white" gap="7px">
                   <FaUserAlt size="1.3rem"/>
                   <Menu bg="black" >
-                    <MenuButton>{user?user.displayName:userName?userName:"Login"}</MenuButton>
+                    <MenuButton>log</MenuButton>
+                    {/* <MenuButton>{isAuth?user.displayName:userName?userName:"Login"}</MenuButton> */}
                     <MenuList bg="black" p="5px" ml="-30px"   >
-                      {user?
+                      {isAuth?
                       // <Box w="70%"  m="auto">
                       <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
                       // </Box>:
                       :
-                       userName?
-                      <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
-                       :
+                      //  userName?
+                      // <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
+                      //  :
                       <Box>
                       <Box w="70%"  m="auto">
                       <Button  w="100%" bg="#353535" size="sm"><Link to="/login">SignIn</Link></Button>

@@ -20,21 +20,29 @@ import { useEffect } from "react";
 export const AuthContext = React.createContext();
 export default function AuthContextProvider({ children }) {
     const [user, setUser] = useState({});
-    const [userName,setUserName] = useState('')
-    const [Id,setId]=useState("")
-    const [user_Auth,set_Auth]=useState({
-      user_Auth:false,
-      token:null
-    });
-    const userLogin=(token)=>{
-      set_Auth({user_Auth:true,token:token});
+    // const [userName,setUserName] = useState("")
+    // const [Id,setId]=useState("")
+    // const [user_Auth,set_Auth]=useState({
+    //   user_Auth:false,
+    //   token:null
+    // });
+    // const userLogin=(token)=>{
+    //   set_Auth({user_Auth:true,token:token});
+    //   setUserName(localStorage.getItem("userName"))
   
-    }
-    function logOut() {
-      setUserName('')
-      setId("")
-      return signOut(auth);
-    }
+    // }
+    // console.log(localStorage.getItem("userName"),"userName is thhis")
+
+    // function logOut() {
+    //   setUserName('')
+    //   setId("")
+    //   localStorage.removeItem("token")
+    //   localStorage.removeItem("userName")
+    //   localStorage.removeItem("id")
+    //   set_Auth({user_Auth:false,
+    //     token:null})
+    //   return signOut(auth);
+    // }
    
     
   
@@ -50,15 +58,29 @@ export default function AuthContextProvider({ children }) {
     
   
   
-   console.log("user_Auth",user_Auth)
+  //  console.log("user_Auth",user_Auth)
   
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
+
+      const unsubscribe=onAuthStateChanged(auth, (currentUser) => {
+        // if(currentUser){
+        //   console.log("currentuserr is present")
+        //   userLogin(localStorage.getItem("token"))
+        //   setUser(currentUser)
+        // }
+        // else{
+        //   console.log("nsjfukufbe")
+          setUser(currentUser)
+        // }
+        // setUser(currentUser);
+         
       });
   
       return () => {
         unsubscribe();
+      //   userLogin(localStorage.getItem("token"))
+      //   // setUserName(localStorage.getItem("userName"))
+
       };
     }, []);
   
@@ -67,7 +89,7 @@ export default function AuthContextProvider({ children }) {
   
     return (
       <AuthContext.Provider
-        value={{ user, logOut, googleSignIn,user_Auth,userLogin,setUserName,userName,Id,setId}}
+        value={{ user, googleSignIn}}
       >
         {children}
       </AuthContext.Provider>

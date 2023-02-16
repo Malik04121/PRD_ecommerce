@@ -2,24 +2,27 @@ import { Box, Button, Flex, Image, Input, Text, useToast } from "@chakra-ui/reac
 import axios from "axios"
 import { useContext } from "react"
 import { useEffect,useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Component/Context/appcontext"
 
 
 function Cart(){
     const [cartdata,setCartdata]=useState([])
     const [cartTotal,setCartTotal]=useState(0)
-    const {userName}=useContext(AuthContext)
+    const isAuth=useSelector((store)=>store.isAuth)
+    const id=useSelector((store)=>store.id)
+
     const navigate=useNavigate()
     const toast = useToast();
 
 
 
 const getcartdetail=async()=>{
-  console.log(userName,"username us")
+  // console.log(userName,"username us")
 
   try{
-    await axios.get(`https://red-houndstooth.cyclic.app/user?username=${userName}`)
+    await axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
     .then(res=>setCartdata(res.data[0].cart))
   }
   catch(err){
@@ -117,7 +120,9 @@ return(
                 <Text fontSize="sm" >You will save ₹34,400 on this order</Text>
             </Box>
             <Box justifyContent="flex-end" w="100%" mt="20px">
-              <Button color="#353535" bg="#33FF83" w="100%">Procede to Buy</Button>
+              <Link to="/checkout">
+              <Button color="#353535" bg="#33FF83" w="100%" >Procede to Buy</Button>
+              </Link>
            </Box>
 
         </Box>

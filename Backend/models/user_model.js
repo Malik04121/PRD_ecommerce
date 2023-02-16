@@ -12,7 +12,8 @@ const UserSchema=mongoose.Schema({
     },
     phone:Number,
     cart:[],
-    wishlist:[]
+    wishlist:[],
+    address:[]
 
 })
 const UserModel=mongoose.model("User",UserSchema)

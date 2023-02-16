@@ -59,7 +59,7 @@ Userroute.post("/login",async(req,res)=>{
        bcrypt.compare(password,user[0].password,(err,result)=>{
          if(result){
              const token = jwt.sign( { userID: user[0]._id }, process.env.secret_key);
-            res.send({"msg":"Login successfully","token":token,displayName:user[0].username,cartData:user[0].cart,wishlistData:user[0].wishlist,id:user[0]._id})
+            res.send({"msg":"Login successfully","token":token,displayName:user[0].username,cartData:user[0].cart,wishlistData:user[0].wishlist,id:user[0]._id,userData:user[0]})
      
          }
          else{
@@ -72,6 +72,7 @@ Userroute.post("/login",async(req,res)=>{
      }
     
     catch(err){
+      
      console.log(err)
     }
  })
@@ -82,6 +83,18 @@ Userroute.post("/login",async(req,res)=>{
   try{
       await UserModel.findByIdAndUpdate({"_id":id},{$push:{"cart":payload}})
 
+      res.send("data is updated")
+  }
+  catch(err){
+      console.log(err)
+  }
+})
+Userroute.patch("/address/:id",authenticate,async(req,res)=>{
+  const payload=req.body
+   
+  const id=req.params.id
+  try{
+      await UserModel.findByIdAndUpdate({"_id":id},{$push:{"address":payload}})
       res.send("data is updated")
   }
   catch(err){
