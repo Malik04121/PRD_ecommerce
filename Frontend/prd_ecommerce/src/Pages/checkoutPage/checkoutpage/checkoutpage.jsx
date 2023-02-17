@@ -15,14 +15,28 @@ function CheckoutPage(){
     const [userData,setUserData]=useState({})
     const id=useSelector((store)=>store.id)
 
+    console.log(id,"id in checkoutpage") 
 
     const initialRef = useRef(null)
     const finalRef = useRef(null)
 
-    useEffect(()=>{
-         axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
-        .then(res=>setUserData(res.data[0].cart))
+    const getuserdata=()=>{
+        // try{
+           axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
+           .then((res)=>{
+            console.log(res.data[0],"data is this")
+            setUserData(res.data[0])
+           })
+              
+        // }
+        // catch(err){
+                // console.log(err)
+        // }
+    }
 
+    useEffect(()=>{
+        getuserdata()
+        console.log(userData)
     },[])
 
     const addAddress=()=>{
@@ -55,7 +69,7 @@ return(
                 </Box>
                 <Heading as="h6" size="md" fontWeight="bold" color="black">Order Summary</Heading>
             </Flex>
-             {isOrder?<OrderSummary Order={isOrder} userdata={userData}/>:console.log("not getting")}
+             {/* <OrderSummary Order={isOrder} userdata={userData.cart}/> */}
            <Flex bg="black" color="white" p="2%" justifyContent="space-between">
             <Text>Order confirmation email will be sent to emailaddress</Text>
             <Button bg="#33FF83" color="black" onClick={onOpen}>Continue</Button>

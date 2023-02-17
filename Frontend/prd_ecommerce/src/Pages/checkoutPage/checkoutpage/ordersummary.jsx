@@ -3,12 +3,12 @@ import { useSelector } from "react-redux"
 
 
 function OrderSummary({Order,userdata}){
-  console.log(userdata,'userdata is')
+  console.log(userdata,'userdata is this')
   const user=useSelector((store)=>store.user)
   
 return(
     <>
-      {userdata?<Box color="white" bg="black" p="2%">
+      <Box color="white" bg="black" p="2%">
         {userdata.map((ele)=>(
 
 <Flex gap="20px">
@@ -26,13 +26,14 @@ return(
     <Button bg="red" size="xs" borderRadius="5px" >Remove</Button>
 </Box>
 </Flex>
-        ))}
+))}
         
-     </Box>:
-     <Box>
-         <Text>Cart is Empty</Text>
      </Box>
-     }
+     {/* : */}
+     <Box>
+         <Text color="white">Cart is Empty</Text>
+     </Box>
+     {/* } */}
       
     </>
 )
