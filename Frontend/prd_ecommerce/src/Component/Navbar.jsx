@@ -6,42 +6,49 @@ import {BsCart2} from "react-icons/bs"
 import {FaUserAlt} from "react-icons/fa"
 import logo from "../Assets/logo2_resize.png"
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Subnavbar } from "./Subnavbar"
 import { AuthContext } from "./Context/appcontext"
 import { useDispatch, useSelector } from "react-redux"
 import { logoutSuccess } from "./Redux/authreducer/action"
-
-const data = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Jane Doe" },
-  { id: 3, name: "Jim Smith" },
-  { id: 4, name: "Jackie Chan" }
-];
 
 function Navbar(){
   const [searchTerm, setSearchTerm] = useState("");
   const isAuth=useSelector((store)=>store.isAuth)
   const user=useSelector((store)=>store.user)
   const dispatch=useDispatch()
-
-
   const [isopen,setIsOpen]=useState(false)
   const [results, setResults] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [typingTimeout, setTypingTimeout] = useState(0);
   // const { googleSignIn,user,logOut,userName} = useContext(AuthContext)
 
   
-  const getsearchdata=()=>{
-    // console.log(searchTerm)
-    fetch(`https://red-houndstooth.cyclic.app/product`)
-     .then(res=>res.json())
-     .then(res=>setResults(res))
-     .catch((err)=>(
-        console.log(err)
-     ))
-  }
- console.log(isAuth,'coditin of isauth')
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm) {
+        fetch(`https://red-houndstooth.cyclic.app/product`)
+          .then(response => response.json())
+          .then((data) =>{
+            const filteredResults = data.filter(item =>
+              item.brand.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            console.log(filteredResults,"filterresult is this")
+            setResults(filteredResults);
+            setIsOpen(true)
+          } )
+          .catch(error => console.error(error));
+      }
+    }, 300);
+
+    return () => {clearTimeout(delayDebounceFn);
+        setResults([])    
+    }
+  }, [searchTerm]);
+
+
+
+
   const logouthandler=()=>{
     // isAuth=false
      dispatch(logoutSuccess())
@@ -49,19 +56,11 @@ function Navbar(){
   }
 
   const handleChange =(e)=> {
-    // console.log("eloo")
     setSearchTerm(e.target.value);
-    getsearchdata()
-    const filteredResults = data.filter(item =>
-      item.brand.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setResults(filteredResults);
-    setIsOpen(true)
   };
 
     return(
         <>
-{/* //new navbar */}
 
           <Flex gap="10%" bg="black" pt="15px" pb="15px" pr="3%" pl="6%" display={{base:"none",md:"flex"}} position="sticky" top="0px" zIndex="1000">
             <Flex gap="10%" w="60%"  >
