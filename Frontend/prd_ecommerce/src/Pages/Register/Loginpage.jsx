@@ -100,7 +100,7 @@ return(
     <Box>
         <Flex justifyContent="space-between">
             <Text fontSize="lg" as="b">LOGIN</Text>
-            <Text color="red">SIGN UP</Text>
+           <Link to="/register"> <Text color="red">SIGN UP</Text></Link>
         </Flex>
         <Text fontSize="sm" color="grey">Get access to your account</Text>
     </Box>

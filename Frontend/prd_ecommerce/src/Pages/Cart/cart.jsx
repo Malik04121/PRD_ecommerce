@@ -23,7 +23,11 @@ const getcartdetail=async()=>{
 
   try{
     await axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
-    .then(res=>setCartdata(res.data[0].cart))
+    .then((res)=>{
+      setCartdata(res.data[0].cart)
+      
+      console.log("before")
+    })
   }
   catch(err){
     console.log(err,"error is")
@@ -38,16 +42,24 @@ const getcartdetail=async()=>{
   }
     
 
-    cartdata.map((ele)=>{
-        setCartTotal(cartTotal=>cartTotal+ele.price)
-    })
+    
 }
+// console.log(cartTotal)
 
-console.log(cartdata,"cartdata")
+// console.log(cartdata,"cartdata")
 
 useEffect(()=>{
+    setCartTotal(0)
     getcartdetail()
+   
+    console.log("after")
 },[])
+useEffect(()=>{
+  cartdata.map((ele)=>{
+    console.log(ele,"2 ele")
+    setCartTotal(cartTotal=>cartTotal+ele.price)
+})
+},[cartdata])
 
 return(
     <Box bg="#1B1B1B" pb="30px">
@@ -66,7 +78,7 @@ return(
 
            <Box bg="black" border="0.5px solid white" mt="20px" p="10px" borderRadius="20px">
 
-           {cartdata.map((item)=>(
+           {cartdata?.map((item)=>(
                 <Flex  color="white"  mt="30px">
                      
                         <Box  w="50%" mt="-20px">
@@ -102,7 +114,7 @@ return(
             <Box mt="30px">
                 <Flex justifyContent="space-between">
                     <Text fontSize="lg" as="b">Price</Text>
-                    <Text fontSize="lg" as="b">95000</Text>
+                    <Text fontSize="lg" as="b">{cartTotal}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text fontSize="lg" as="b">Delivery Charges</Text>

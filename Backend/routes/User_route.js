@@ -24,18 +24,18 @@ Userroute.post("/signup",async(req,res)=>{
     try{
       const data=await UserModel.find({email})
       if(data.length>0){
-        res.status(200).send({ msg: "User Already Exist" });
+        res.status(409).send({ msg: "User Already Exist",status:409 });
       }
       else{
         bcrypt.hash(password,4,async(err,hash)=>{
             if(err){
-                res.status(500).send({ msg: "Something went wrong !" });
+                res.status(500).send({ msg: "Something went wrong !" ,status:500});
                console.log(err)
             }
             else{
                 const userdata=new UserModel({email,username,password:hash,phone})
         await userdata.save()
-        res.status(200).send({ msg: "User registered Successfully" });
+        res.status(200).send({ msg: "User registered Successfully" ,status:200});
         // res.send("user is register")
             }
       })
@@ -43,7 +43,7 @@ Userroute.post("/signup",async(req,res)=>{
     }
     catch(err){
         console.log(e)
-        res.status(404).send({ msg: "Failed to create new user" });
+        res.status(404).send({ msg: "Failed to create new user" ,status:404});
         // res.send("Something went wrong")
     }
 
@@ -89,7 +89,7 @@ Userroute.post("/login",async(req,res)=>{
       console.log(err)
   }
 })
-Userroute.patch("/address/:id",authenticate,async(req,res)=>{
+Userroute.patch("/address/:id",authe,async(req,res)=>{
   const payload=req.body
    
   const id=req.params.id

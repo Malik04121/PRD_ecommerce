@@ -21,6 +21,24 @@ const loginError=()=>{
         type:types.USER_LOGIN_ERROR
     }
 }
+// const registerRequest=()=>{
+//     return{
+//         type:types.USER_LOGIN_REQUEST
+//     }
+// }
+// const registerSuccess=(user)=>{
+//     return{
+//         type:types.USER_LOGIN_SUCCESS,
+//         payload:user,
+//     }
+// }
+// const registerError=()=>{
+//     return{
+//         type:types.USER_LOGIN_ERROR
+//     }
+// }
+
+
 const logoutSuccess=()=>{
     return{
         type:types.USER_LOGOUT_SUCCESS
@@ -39,5 +57,20 @@ const login=(params)=>(dispatch)=>{
         console.log(e,"error is")
         dispatch(loginError())})
 }
+// const register=(params)=>(dispatch)=>{
+//    let customConfig = {
+//         headers: {
+//         'Content-Type': 'application/json'
+//         }
+//     };
+//     return axios.post('https://red-houndstooth.cyclic.app/user/signup',params,customConfig)
+//     .then((r)=>{
+//         console.log(r,"res og register is")
+//         dispatch(registerSuccess(r.data))
+//     })
+//     .catch((err)=>{
+//         dispatch(registerError())
+//     })
+// }
 
 export {loginError,loginRequest,loginSuccess,logoutSuccess,login}
