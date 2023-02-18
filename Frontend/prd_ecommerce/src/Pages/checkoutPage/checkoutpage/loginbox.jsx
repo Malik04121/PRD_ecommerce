@@ -21,7 +21,7 @@ function LoginBox(){
                     </Flex>
                     <Flex gap="10px">
                         <Text>{user.username}</Text>
-                        <Text>9852364561</Text>
+                        <Text>{user.phone}</Text>
                     </Flex>
                 </Box>
             </Flex>

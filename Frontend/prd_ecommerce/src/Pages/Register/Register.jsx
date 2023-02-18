@@ -10,6 +10,9 @@ import { Link, useNavigate } from "react-router-dom"
 // import { Form } from "react-router-dom"
 import { AuthContext } from "../../Component/Context/appcontext";
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import { login, register } from "../../Component/Redux/authreducer/action"
+
 
 const formdata={
     "username":"",
@@ -22,7 +25,7 @@ function Register(){
     const toast=useToast()
     const navigate=useNavigate()
     const { googleSignIn} = useContext(AuthContext)
-
+    const dispatch=useDispatch()
 
     const googleauth=async(e)=>{
         e.preventDefault();
@@ -37,14 +40,12 @@ function Register(){
         }
         axios.post("https://red-houndstooth.cyclic.app/user/signup",payload).then((res)=>{
           console.log(res.data)
-            if(res.status===200){
+            if(res.status===409){
              const  login_payload={
               email:user.user.email,
           password:`${user.user.displayName.split(" ")[0]}@byme`
              }
-             axios.post("https://redhoundstooth.cyclic.app/user/login",login_payload).then((res)=>{
-                
-              })
+             dispatch(login(login_payload))
             }
           })
       }
@@ -74,18 +75,19 @@ const RegisterHandler=(e)=>{
     })
     .then(res=>res.json())
     .then((res)=>{
-        console.log(res)
-        toast({
-            title:res.msg
-          })
-          if(res.status===200){
-            navigate("/login")
+          const payload={
+            email:userdata.email,
+            password:userdata.password
           }
-        //   else {
-        //     toast({
-        //       title:"Please Signup with correct credentials"
-        //     })
-        //   }
+            dispatch(login(payload)).then((res)=>{
+              toast({
+                position : 'top',
+                colorScheme : 'green', 
+                status : "success",
+                title:"register Successfuly"
+              })
+              navigate("/")
+            })
     })
     .catch(err=>console.log(err))
 }
@@ -93,12 +95,7 @@ const inputhandler=(e)=>{
     const {name,value}=e.target
     setUserdata({...userdata,[name]:value})
 }
-// const googleauth=()=>{
-//      alert("google")
-//      signInWithPopup(auth,provider).then((data)=>{
 
-//      })
-// }
 
 
 return(
