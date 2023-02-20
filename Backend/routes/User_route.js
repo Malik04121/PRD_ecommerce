@@ -89,7 +89,7 @@ Userroute.post("/login",async(req,res)=>{
       console.log(err)
   }
 })
-Userroute.patch("/address/:id",authe,async(req,res)=>{
+Userroute.patch("/address/:id",async(req,res)=>{
   const payload=req.body
    
   const id=req.params.id
