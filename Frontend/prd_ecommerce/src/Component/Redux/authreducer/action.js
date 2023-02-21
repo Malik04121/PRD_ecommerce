@@ -21,6 +21,25 @@ const loginError=()=>{
         type:types.USER_LOGIN_ERROR
     }
 }
+
+
+const adminLoginRequest=()=>{
+    return{
+        type:types.ADMIN_LOGIN_REQUEST
+    }
+}
+const adminLoginSuccess=(token,Id,username,user)=>{
+    return{
+        type:types.ADMIN_LOGIN_SUCCESS,
+        payload:token,
+        username:username
+    }
+}
+const adminLoginError=()=>{
+    return{
+        type:types.ADMIN_LOGIN_ERROR
+    }
+}
 // const registerRequest=()=>{
 //     return{
 //         type:types.USER_LOGIN_REQUEST

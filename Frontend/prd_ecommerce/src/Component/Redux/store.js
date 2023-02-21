@@ -1,7 +1,9 @@
 
 import {legacy_createStore,combineReducers, applyMiddleware} from "redux"
 // import { reducer as countReducer} from "./counter/reducer"
-import { reducer } from "./authreducer/reducer"
+
+import { reducer as menuReducer } from "./adminreducer/reducer"
+import { reducer as authReducer } from "./authreducer/reducer"
 import thunk from "redux-thunk"
 
 // import { compose } from "redux"
@@ -11,11 +13,11 @@ import thunk from "redux-thunk"
     // const temp=next(action)
     // return temp}
 
-// const Rootreducer=combineReducers({TodoReducer,AuthReducer})
+const Rootreducer=combineReducers({menuReducer,authReducer})
 
 
 // const store=legacy_createStore(Rootreducer,composeEnhancers(applyMiddleware(logger1,logger2)))
 
-const store=legacy_createStore(reducer,applyMiddleware(thunk))
+const store=legacy_createStore(Rootreducer,applyMiddleware(thunk))
 
 export {store}
