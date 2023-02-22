@@ -31,6 +31,6 @@ const ProductSchema=mongoose.Schema({
     updateOn:Date
 
 })
-const ProductModel=mongoose.model("product",ProductSchema)
+const ProductModel=mongoose.model("Laptop",ProductSchema)
 
 module.exports={ProductModel}

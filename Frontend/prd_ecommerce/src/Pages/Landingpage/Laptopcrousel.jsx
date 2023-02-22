@@ -2,21 +2,29 @@ import { Box, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Carousel from "react-multi-carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../Component/Redux/userreducer/action";
 // import { Categorydetails } from './productcrouseldata';
 
 import "./ProductCarousel.css";
 
 function LaptopcategoryCraousel(){
+  const dispatch=useDispatch()
+    const userdata=useSelector((store)=>store.userReducer.data)
+    const loading=useSelector((store)=>store.userReducer.isLoading)
  const [laptopdata,setLaptopdata]=useState([])
  
+const getUserData=()=>{
+    dispatch(userData())
+}
+
  useEffect(()=>{
-     fetch("https://red-houndstooth.cyclic.app/product?type=laptop")
-     .then(res=>res.json())
-     .then(res=>setLaptopdata(res))
-     .catch((err)=>(
-        console.log(err)
-     ))
+     getUserData()
  },[])
+
+ useEffect(()=>{
+      setLaptopdata(userdata)
+ },[userdata])
     
     const responsive = {
         superLargeDesktop: {
@@ -54,7 +62,7 @@ return(
     //  autoPlay={true}
      infinite={true}
      >
-       {laptopdata.map((ele)=>(
+       {!laptopdata?<Heading color="white">...Loading</Heading>:laptopdata.map((ele)=>(
     <Box   mr="10px" ml="10px"  color="white" bg="#4B4B4B" mt="20px">
         <Box >
           <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1}/>   
@@ -71,6 +79,7 @@ return(
      </Carousel>
       
     </Box>
+     {/* } */}
     </Box>
 )
 
