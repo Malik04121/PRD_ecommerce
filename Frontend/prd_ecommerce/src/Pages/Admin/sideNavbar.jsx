@@ -55,11 +55,11 @@ function SideNavbar(){
 
     return(
         <>
-          <Box bg="yellow" position="fixed" left="0" w="200px" p="20px" h="100%">
+          <Box bg="#1A0D61" position="fixed" left="0" w="200px" p="20px" h="100%">
             {navMenu.map((menu)=>(
                 <Flex onClick={()=>changeMenu(menu.payload)} gap="10px" alignItems="center" mt="15px">
-                    <Box fontSize="20px"><menu.icon/></Box>
-                    <Text fontSize="lg" fontWeight="semibold">{menu.name}</Text>
+                    <Box fontSize="20px" color="white"><menu.icon/></Box>
+                    <Text fontSize="lg" fontWeight="semibold" color="white">{menu.name}</Text>
                 </Flex>
             ))}
 

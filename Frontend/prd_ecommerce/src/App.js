@@ -10,9 +10,9 @@ import { Admin } from './Pages/Admin/admin';
 function App() {
   return (
    <Box >
-   <Navbar/>
+   {/* <Navbar/> */}
    <MainRoute/>
-   <Footer/>
+   {/* <Footer/> */}
    {/* <Admin/> */}
    </Box>
   );

@@ -7,7 +7,7 @@ function TopNavbar(){
 
     return(
         <>
-        <Flex h="60px" position="sticky" top="0" bg="red" alignItems="center">
+        <Flex h="60px" position="sticky" top="0"  bg="red" alignItems="center">
             <Box>
                 <Image src=""/>
             </Box>
