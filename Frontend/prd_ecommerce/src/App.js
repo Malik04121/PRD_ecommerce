@@ -5,13 +5,15 @@ import { Box } from '@chakra-ui/layout';
 import { MainRoute } from './Component/route/Route';
 import { Cart } from './Pages/Cart/cart';
 import Footer from './Component/Footer/footer';
+import { Admin } from './Pages/Admin/admin';
 
 function App() {
   return (
    <Box >
-   <Navbar/>
+   {/* <Navbar/> */}
    <MainRoute/>
-   <Footer/>
+   {/* <Footer/> */}
+   {/* <Admin/> */}
    </Box>
   );
 }

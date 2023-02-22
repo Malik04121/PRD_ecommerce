@@ -12,14 +12,20 @@ import { TVProduct } from "../../Pages/category_Page/TV_product/TV";
 import { ACProduct } from "../../Pages/category_Page/AC_product/AC";
 import { WMProduct } from "../../Pages/category_Page/washingMachine_product/WashingMachine";
 import { CheckoutPage } from "../../Pages/checkoutPage/checkoutpage/checkoutpage";
-import  CartAuth  from "./middleware";
+import  {CartAuth,AdminAuth} from "./middleware";
+import { AdminLogin } from "../../Pages/Register/adminLoginPage";
+import { Admin } from "../../Pages/Admin/admin";
+import { Switch } from "@chakra-ui/react";
+import { Layout } from "./layout";
 
 
 function MainRoute(){
 
 return(
     <>
+    
     <Routes>
+        <Route element={<Layout/>}>
         <Route path="/" element={<Landingpage/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
@@ -32,8 +38,11 @@ return(
         <Route path="/cart" element={<CartAuth><Cart/></CartAuth>}/>
         <Route path="/checkout" element={<CheckoutPage/>}/>
         <Route path="/product/:param/:para" element={<Product/>}/>
+        <Route path="/admin/login" element={<AdminLogin/>}/>
 
-        
+        </Route>
+         
+        <Route path="/admin" element={<Admin/>}/>
 
     </Routes>
     </>

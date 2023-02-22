@@ -21,6 +21,25 @@ const loginError=()=>{
         type:types.USER_LOGIN_ERROR
     }
 }
+
+
+const adminLoginRequest=()=>{
+    return{
+        type:types.ADMIN_LOGIN_REQUEST
+    }
+}
+const adminLoginSuccess=(token2,name)=>{
+    return{
+        type:types.ADMIN_LOGIN_SUCCESS,
+        payload:token2,
+        username:name
+    }
+}
+const adminLoginError=()=>{
+    return{
+        type:types.ADMIN_LOGIN_ERROR
+    }
+}
 // const registerRequest=()=>{
 //     return{
 //         type:types.USER_LOGIN_REQUEST
@@ -57,6 +76,17 @@ const login=(params)=>(dispatch)=>{
         console.log(e,"error is")
         dispatch(loginError())})
 }
+const adminLogin=(params)=>(dispatch)=>{
+    dispatch(adminLoginRequest)
+    return axios.post('https://red-houndstooth.cyclic.app/admin/login',params)
+    .then((r)=>{
+        console.log(r,"res is")
+        dispatch(adminLoginSuccess(r.data.token2,r.data.name))
+    })
+    .catch((e)=>{
+        console.log(e,"error is")
+        dispatch(adminLoginError())})
+}
 // const register=(params)=>(dispatch)=>{
 //    let customConfig = {
 //         headers: {
@@ -73,4 +103,4 @@ const login=(params)=>(dispatch)=>{
 //     })
 // }
 
-export {loginError,loginRequest,loginSuccess,logoutSuccess,login}
+export {loginError,loginRequest,loginSuccess,logoutSuccess,login,adminLogin,adminLoginError,adminLoginRequest,adminLoginSuccess}

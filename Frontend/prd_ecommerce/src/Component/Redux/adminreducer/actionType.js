@@ -1,0 +1,9 @@
+
+export const MENU_REQUEST="MENU_REQUEST";
+export const MENU_SUCCESS="MENU_SUCCESS";
+export const MENU_API_SUCCESS="MENU_API_SUCCESS";
+
+export const RESET_STATE="RESET_STATE";
+
+export const MENU_ERROR="MENU_ERROR";
+

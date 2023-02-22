@@ -114,7 +114,9 @@ function Navbar(){
                         }
                       
                     </MenuList>
-                  </Menu>  
+                  </Menu> 
+
+                  <Text><Link to="/admin/login">Admin Login</Link></Text>
                   
                   {/* <Button>Login</Button> */}
                   {/* <Text fontSize="xl">Login</Text> */}

@@ -17,11 +17,25 @@ const CartAuth=({children})=>{
       })
     return <Navigate to="/login" replace={true}/>
   }
-
     return children
 
-   
-   
+}
+
+const AdminAuth=({children})=>{
+  const token2=useSelector((store)=>store.token2)
+  const toast=useToast()
+    
+
+  if(!token2){
+    toast({
+        position : 'top',
+        colorScheme : 'red', 
+        status : "success",
+        title:"Admin is not Logged In please Login first"
+      })
+    return <Navigate to="/admin/login" replace={true}/>
+  }
+    return children
 
 }
-export default CartAuth
+export {AdminAuth,CartAuth}
