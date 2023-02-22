@@ -4,6 +4,7 @@ import {legacy_createStore,combineReducers, applyMiddleware} from "redux"
 
 import { reducer as menuReducer } from "./adminreducer/reducer"
 import { reducer as authReducer } from "./authreducer/reducer"
+import { reducer as userReducer } from "./userreducer/reducer"
 import thunk from "redux-thunk"
 
 // import { compose } from "redux"
@@ -13,7 +14,7 @@ import thunk from "redux-thunk"
     // const temp=next(action)
     // return temp}
 
-const Rootreducer=combineReducers({menuReducer,authReducer})
+const Rootreducer=combineReducers({menuReducer,authReducer,userReducer})
 
 
 // const store=legacy_createStore(Rootreducer,composeEnhancers(applyMiddleware(logger1,logger2)))
