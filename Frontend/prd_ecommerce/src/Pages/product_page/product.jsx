@@ -31,12 +31,14 @@ import { LaptopFilter } from "./laptop_filter";
   import "./category.css";
 import { AuthContext } from "../../Component/Context/appcontext";
 import { MobileFilter } from "./Mobile_filter";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { prodUpdate } from "../../Component/Redux/userreducer/action";
   
   function Product() {
     // const { city } = useContext(CityContext);
-    const Id=useSelector((store)=>store.id)
-    const Token=useSelector((store)=>store.token)
+    const Id=useSelector((store)=>store.authReducer.id)
+    const isAuth=useSelector((store)=>store.authReducer.isAuth)
+    const Token=useSelector((store)=>store.authReducer.token)
     // const {Id,user_Auth}=useContext(AuthContext)
     const { param } = useParams();
     const { para } = useParams();
@@ -51,6 +53,7 @@ import { useSelector } from "react-redux";
     const toast = useToast();
     const navigate=useNavigate()
     // console.log(para,"para is")
+    const dispatch=useDispatch()
     const labelStyles = {
       mt: "2",
       ml: "-2.5",
@@ -68,12 +71,12 @@ import { useSelector } from "react-redux";
     const getProd = () => {
         if(para[0]=="c" || filtertype=="category"){
             axios
-        .get(`https://red-houndstooth.cyclic.app/product?type=${param}&category=${checkboxvalue}`)
+        .get(`https://sangria-crocodile-tux.cyclic.app/product?type=${param}&category=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
         if(para[0]=="b" || filtertype=="brand"){
             axios
-        .get(`https://red-houndstooth.cyclic.app/product?type=${param}&brand=${checkboxvalue}`)
+        .get(`https://sangria-crocodile-tux.cyclic.app/product?type=${param}&brand=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
     };
@@ -85,21 +88,28 @@ import { useSelector } from "react-redux";
     };
   
     const Carthandler = (prod) => {
-      if(Id){
-      axios
-        .patch(`https://red-houndstooth.cyclic.app/user/update/${Id}`,prod,{
-          headers:{
-            "Authorization":Token
-          }
-        })
-        .then((res) => console.log(res,"res is this"));
-        toast({
-          position: "top",
-          title: "Item successfully Added to Cart",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        });
+      if(isAuth){
+        console.log(Id,"id is this in axios")
+        console.log(prod,"product is this in axios")
+        dispatch(prodUpdate(prod))
+      // axios
+      //   .patch(`https://red-houndstooth.cyclic.app/user/update/${Id}`,prod,{
+      //     headers: {
+      //       Authorization: Token,
+      //       'Content-Type': 'application/json'
+      //     }
+      //   })
+      //   .then((res) =>{
+      //     console.log(res,"res is this");
+      //     toast({
+      //       position: "top",
+      //       title: "Item successfully Added to Cart",
+      //       status: "success",
+      //       duration: 9000,
+      //       isClosable: true,
+      //     });
+      //   } )
+      //   .catch(err=>console.log(err,"error of axios"))
 
       }
       else{

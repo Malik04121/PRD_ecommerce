@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 
 const CartAuth=({children})=>{
-  const isAuth=useSelector((store)=>store.isAuth)
+  const isAuth=useSelector((store)=>store.authReducer.isAuth)
   const toast=useToast()
     
 
@@ -22,7 +22,7 @@ const CartAuth=({children})=>{
 }
 
 const AdminAuth=({children})=>{
-  const token2=useSelector((store)=>store.token2)
+  const token2=useSelector((store)=>store.menuReducer.token2)
   const toast=useToast()
     
 

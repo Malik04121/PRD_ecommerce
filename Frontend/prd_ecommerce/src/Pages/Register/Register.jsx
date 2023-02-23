@@ -3,15 +3,15 @@ import { Input } from "@chakra-ui/input"
 import { Box, Flex, Text,Form, FormLabel, Toast, useToast } from "@chakra-ui/react"
 import {FcGoogle} from "react-icons/fc"
 import {BsFacebook} from "react-icons/bs"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 // import {auth,provider} from "../../Pages/Firebase_config"
 // import { signInWithPopup } from "firebase/auth"
 // import { Form } from "react-router-dom"
 import { AuthContext } from "../../Component/Context/appcontext";
 import axios from "axios"
-import { useDispatch } from "react-redux"
-import { login, register } from "../../Component/Redux/authreducer/action"
+import { useDispatch, useSelector } from "react-redux"
+import { login, register, userRegister } from "../../Component/Redux/authreducer/action"
 
 
 const formdata={
@@ -22,6 +22,9 @@ const formdata={
 }
 function Register(){
     const [userdata,setUserdata]=useState(formdata)
+    const registerData=useSelector((store)=>store.authReducer.msg)
+    const registerStatus=useSelector((store)=>store.authReducer.status)
+    
     const toast=useToast()
     const navigate=useNavigate()
     const { googleSignIn} = useContext(AuthContext)
@@ -33,29 +36,28 @@ function Register(){
        const user= await googleSignIn();
        console.log("from signup",user);
        if(user.user.email!==undefined){
+        let login_payload={
+                email:user.user.email,
+            password:`${user.user.displayName.split(" ")[0]}@byme`
+               }
         const payload={
           username:user.user.displayName,
           email:user.user.email,
           password:`${user.user.displayName.split(" ")[0]}@byme`
         }
-        axios.post("https://red-houndstooth.cyclic.app/user/signup",payload).then((res)=>{
-          console.log(res.data)
-            if(res.status===409){
-             const  login_payload={
-              email:user.user.email,
-          password:`${user.user.displayName.split(" ")[0]}@byme`
-             }
-             dispatch(login(login_payload))
-            }
-          })
+        dispatch(userRegister(payload))
+        // axios.post("https://red-houndstooth.cyclic.app/user/signup",payload).then((res)=>{
+        //   console.log(res.data)
+        //     if(res.status===409){
+        //      const  login_payload={
+        //       email:user.user.email,
+        //   password:`${user.user.displayName.split(" ")[0]}@byme`
+        //      }
+        //      dispatch(login(login_payload))
+        //     }
+        //   })
       }
-      navigate("/");
-       toast({
-          position : 'top',
-          colorScheme : 'green', 
-          status : "success",
-          title:"Login sucessfully "
-      })
+      
           
         } catch (error) {
           console.log(error.message);
@@ -65,38 +67,63 @@ function Register(){
 
 const RegisterHandler=(e)=>{
     e.preventDefault()
-    fetch("https://red-houndstooth.cyclic.app/user/signup",{
-        method:"POST",
-        body:JSON.stringify(userdata),
-        // mode: 'cors',
-        headers:{
-            "Content-type":"application/json"
-        }
-    })
-    .then(res=>res.json())
-    .then((res)=>{
-          const payload={
-            email:userdata.email,
-            password:userdata.password
-          }
-            dispatch(login(payload)).then((res)=>{
-              toast({
-                position : 'top',
-                colorScheme : 'green', 
-                status : "success",
-                title:"register Successfuly"
-              })
-              navigate("/")
-            })
-    })
-    .catch(err=>console.log(err))
+    dispatch(userRegister(userdata))
+    // fetch("https://red-houndstooth.cyclic.app/user/signup",{
+    //     method:"POST",
+    //     body:JSON.stringify(userdata),
+    //     headers:{
+    //         "Content-type":"application/json"
+    //     }
+    // })
+    // .then(res=>res.json())
+    // .then((res)=>{
+    //       const payload={
+    //         email:userdata.email,
+    //         password:userdata.password
+    //       }
+    //         dispatch(login(payload)).then((res)=>{
+    //           toast({
+    //             position : 'top',
+    //             colorScheme : 'green', 
+    //             status : "success",
+    //             title:"register Successfuly"
+    //           })
+    //           navigate("/")
+    //         })
+    // })
+    // .catch(err=>console.log(err))
 }
 const inputhandler=(e)=>{
     const {name,value}=e.target
     setUserdata({...userdata,[name]:value})
 }
 
-
+useEffect(()=>{
+   if(registerStatus==409){
+                toast({
+                  position : 'top',
+                  colorScheme : 'red', 
+                  status : "success",
+                  title:"User Already Registered please login"
+                })
+                navigate("/login")
+   }
+   if(registerStatus==200){
+    const loginPayload={
+      email:userdata.email,
+      password:userdata.password
+    }
+    dispatch(login(loginPayload))
+    toast({
+      position : 'top',
+      colorScheme : 'green', 
+      status : "success",
+      title:"User Registered Successfully"
+    })
+    navigate("/")
+   }
+     console.log(registerStatus,"register status is this")
+},[registerStatus])
 
 return(
     <>

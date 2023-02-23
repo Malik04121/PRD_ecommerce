@@ -6,19 +6,19 @@ import { useSelector } from "react-redux"
 function OrderSummary({Order,userdata}){
   console.log(userdata,'userdata is this')
   const [orderState,setOrderState]=useState(false)
-  const user=useSelector((store)=>store.user)
+  const user=useSelector((store)=>store.authReducer.user)
   
 return(
     <>
     {userdata.length>0?
-       <Box color="white" bg="black" p="2%" display={!Order&&"none"} >
+       <Box color="white"  p="2%" display={!Order&&"none"} >
        {userdata?.map((ele)=>(
 
-<Flex gap="20px">
-<Box  w="40%">
-  <Image src={ele.image1} alt="image"/>
-</Box>
-<Box>
+<Flex gap="20px" mt="10px">
+<Flex  w="40%"  h="150px" justifyContent="center" >
+  <Image src={ele.image1} alt="image" h="100%"/>
+</Flex>
+<Box w="50%">
   <Text>{ele.name}</Text>
   <Flex>
       <Text fontSize="md" as="s">{ele.originalPrice}</Text> &nbsp;

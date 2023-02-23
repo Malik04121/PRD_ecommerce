@@ -78,7 +78,7 @@ Userroute.post("/login",async(req,res)=>{
  })
  Userroute.patch("/update/:id",authenticate,async(req,res)=>{
   const payload=req.body
-   
+  
   const id=req.params.id
   try{
       await UserModel.findByIdAndUpdate({"_id":id},{$push:{"cart":payload}})

@@ -14,20 +14,20 @@ import { logoutSuccess } from "./Redux/authreducer/action"
 
 function Navbar(){
   const [searchTerm, setSearchTerm] = useState("");
-  const isAuth=useSelector((store)=>store.isAuth)
-  const user=useSelector((store)=>store.user)
+  const isAuth=useSelector((store)=>store.authReducer.isAuth)
+  const user2=useSelector((store)=>store.authReducer.user)
   const dispatch=useDispatch()
   const [isopen,setIsOpen]=useState(false)
   const [results, setResults] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [typingTimeout, setTypingTimeout] = useState(0);
-  // const { googleSignIn,user,logOut,userName} = useContext(AuthContext)
+  const { currentUser, signInWithGoogle, signOut,user } = useContext(AuthContext)
 
   
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm) {
-        fetch(`https://red-houndstooth.cyclic.app/product`)
+        fetch(`https://sangria-crocodile-tux.cyclic.app/product`)
           .then(response => response.json())
           .then((data) =>{
             const filteredResults = data.filter(item =>
@@ -49,16 +49,25 @@ function Navbar(){
 
 
 
-  const logouthandler=()=>{
+  const logouthandler=async()=>{
     // isAuth=false
-     dispatch(logoutSuccess())
+    try{
+      await signOut()
+      console.log(user,"google user is this after logout")
+      dispatch(logoutSuccess())
+    }
+    catch(err){
+         console.log(err)
+    }
+    
       // console.log(isAuth,"2nd is auth")
   }
 
   const handleChange =(e)=> {
     setSearchTerm(e.target.value);
   };
-
+   console.log(isAuth,"is auth is ")
+   console.log("userof google is" ,user)
     return(
         <>
 
@@ -92,20 +101,28 @@ function Navbar(){
                 <Flex alignItems="center" color="white" gap="7px">
                   <FaUserAlt size="1.3rem"/>
                   <Menu bg="black">
-                    <MenuButton>{isAuth?user.username:"Login"}</MenuButton>
+                    <MenuButton>{isAuth?user2.username:user?user.displayName:"Login"}</MenuButton>
                     <MenuList bg="black" p="5px" ml="-50px"  >
                       {isAuth?
                       // <Box w="70%"  m="auto">
-                      <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
+                      <Flex gap="5%" justifyContent="center">
+                      <Link to="/" ><Button  w="100%" bg="#353535" onClick={logouthandler}>Logout</Button></Link>
+                      <Link to="/admin/login"><Button bg="#353535" >Admin</Button></Link>
+                      </Flex>
                       // </Box>:
                       :
-                      //  userName?
-                      // <Button  w="100%" bg="#353535" onClick={logouthandler}><Link to="/" >Logout</Link></Button>
-                      //  :
+                       user?
+                       <Flex gap="5%" justifyContent="center">
+                     <Link to="/" > <Button  w="100%" bg="#353535" onClick={logouthandler}>Logout</Button></Link>
+                       <Link to="/admin/login"><Button bg="#353535" >Admin</Button></Link>
+                          
+                       </Flex>
+                       :
                       <Box>
-                      <Box w="70%"  m="auto">
+                      <Flex w="90%" m="auto">
                       <Button  w="100%" bg="#353535"><Link to="/login">SignIn</Link></Button>
-                      </Box>
+                       <Link to="/admin/login"><Button>Admin</Button></Link>
+                      </Flex>
                       <Flex gap="10px">
                         <Text>New Customer?</Text>
                         <Text color="red"><Link to="/register">SignUp</Link></Text>
@@ -116,7 +133,6 @@ function Navbar(){
                     </MenuList>
                   </Menu> 
 
-                  <Text><Link to="/admin/login">Admin Login</Link></Text>
                   
                   {/* <Button>Login</Button> */}
                   {/* <Text fontSize="xl">Login</Text> */}

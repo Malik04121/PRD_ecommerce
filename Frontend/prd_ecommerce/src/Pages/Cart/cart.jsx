@@ -2,44 +2,52 @@ import { Box, Button, Flex, Image, Input, Text, useToast } from "@chakra-ui/reac
 import axios from "axios"
 import { useContext } from "react"
 import { useEffect,useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Component/Context/appcontext"
+import { loginUserData } from "../../Component/Redux/userreducer/action"
 
 
 function Cart(){
     const [cartdata,setCartdata]=useState([])
     const [cartTotal,setCartTotal]=useState(0)
-    const isAuth=useSelector((store)=>store.isAuth)
-    const id=useSelector((store)=>store.id)
-
+    const isAuth=useSelector((store)=>store.authReducer.isAuth)
+    const id=useSelector((store)=>store.authReducer.id)
+    const Loading=useSelector((store)=>store.userReducer.isLoading)
+    const userData=useSelector((store)=>store.userReducer.userData)
+    const dispatch=useDispatch()
     const navigate=useNavigate()
     const toast = useToast();
 
 
 
-const getcartdetail=async()=>{
+const getcartdetail=()=>{
   // console.log(userName,"username us")
-
-  try{
-    await axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
-    .then((res)=>{
-      setCartdata(res.data[0].cart)
+    dispatch(loginUserData())
+    // .then((res)=>console.log(res,"res is this in cart"))
+    // .catch((err)=>{
+    //   console.log(err,"error in catch")
+    //   toast({
+    //     position: "top",
+    //     title: "User is not logged in please Login First!",
+    //     status: "success",
+    //     duration: 9000,
+    //     isClosable: true,
+    //   });
+    //   navigate("/login")
+    // })
+  // try{
+  //   await axios.get(`https://sangria-crocodile-tux.cyclic.app/user?_id=${id}`)
+  //   .then((res)=>{
+  //     setCartdata(res.data[0].cart)
       
-      console.log("before")
-    })
-  }
-  catch(err){
-    console.log(err,"error is")
-    toast({
-      position: "top",
-      title: "User is not logged in please Login First!",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
-    navigate("/login")
-  }
+  //     console.log("before")
+  //   })
+  // }
+  // catch(err){
+  //   console.log(err,"error is")
+    
+  
     
 
     
@@ -55,11 +63,21 @@ useEffect(()=>{
     console.log("after")
 },[])
 useEffect(()=>{
-  cartdata.map((ele)=>{
-    console.log(ele,"2 ele")
-    setCartTotal(cartTotal=>cartTotal+ele.price)
-})
-},[cartdata])
+  setCartdata(userData.cart)
+  const totalPrice = userData?.cart.reduce((total, item) => total + item.price, 0);
+ setCartTotal(totalPrice);
+},[userData])
+
+
+if(Loading){
+  console.log(Loading,"loading is this",userData)
+}
+// useEffect(()=>{
+//   cartdata.map((ele)=>{
+//     console.log(ele,"2 ele")
+//     setCartTotal(cartTotal=>cartTotal+ele.price)
+// })
+// },[cartdata])
 
 return(
     <Box bg="#1B1B1B" pb="30px">
