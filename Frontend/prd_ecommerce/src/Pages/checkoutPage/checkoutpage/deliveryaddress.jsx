@@ -1,7 +1,8 @@
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input , Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios"
 import { useRef, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { addressUpdate } from "../../../Component/Redux/userreducer/action"
 
 const address={
     "name":"",
@@ -15,13 +16,14 @@ const address={
 
 function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
    const [userAddress,setUserAddress]=useState(address)
-   const Id=useSelector((store)=>store.id)
+   const Id=useSelector((store)=>store.authReducer.id)
+   const loading=useSelector((store)=>store.userReducer.isLoading)
    const toast = useToast();
    const { isOpen, onOpen, onClose } = useDisclosure()
-   const Token=useSelector((store)=>store.token)
+   const Token=useSelector((store)=>store.authReducer.token)
+   const dispatch=useDispatch()
 
-
-   const user=useSelector((store)=>store.user)
+   const user=useSelector((store)=>store.authReducer.user)
 
 
    const initialRef = useRef(null)
@@ -35,15 +37,7 @@ function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
 
    const addAddress=(e)=>{
       e.preventDefault()
-      console.log(userAddress,"useraddress")  
-
-      axios
-      .patch(`https://red-houndstooth.cyclic.app/user/address/${Id}`,userAddress,{
-        headers:{
-            "Authorization":Token
-          }
-      })
-      .then((res) => console.log(res,"res is this"));
+      dispatch(addressUpdate(userAddress))
       toast({
         position: "top",
         title: "Address is successfully Added",
@@ -51,7 +45,6 @@ function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
         duration: 9000,
         isClosable: true,
       });
-    //    updateAddress()
        setOrder(true)
        setAddressStatus(false)
        setInitialStyle(false)
@@ -62,7 +55,7 @@ function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
         const {name,value}=e.target
         setUserAddress({...userAddress,[name]:value})
     }
-    console.log(userdata,"userdata in address")
+    
 
     return(
         <>
@@ -78,7 +71,7 @@ function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
                            <Text>{ele.phone}</Text>
                           </Flex>
                           <Flex>
-                            <Text noOfLines={1}>{ele.address}</Text>
+                            <Text noOfLines={1}>{ele.fulladdress}</Text>
                           </Flex>
 
                         </Box>

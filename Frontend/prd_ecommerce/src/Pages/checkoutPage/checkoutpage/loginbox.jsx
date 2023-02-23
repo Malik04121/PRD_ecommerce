@@ -4,7 +4,7 @@ import {AiOutlineCheck} from "react-icons/ai"
 import { useSelector } from "react-redux"
 
 function LoginBox(){
-    const user=useSelector((store)=>store.user)
+    const user=useSelector((store)=>store.authReducer.user)
 
     
     return(

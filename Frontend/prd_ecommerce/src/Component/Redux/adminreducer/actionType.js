@@ -1,9 +1,16 @@
 
+export const ADD_USER_REQUEST="ADD_USER_REQUEST";
+export const ADD_USER_SUCCESS="ADD_USER_SUCCESS";
+export const ADD_USER_ERROR="ADD_USER_ERROR";
+
+
 export const MENU_REQUEST="MENU_REQUEST";
 export const MENU_SUCCESS="MENU_SUCCESS";
+export const MENU_ERROR="MENU_ERROR";
+
+
 export const MENU_API_SUCCESS="MENU_API_SUCCESS";
 
 export const RESET_STATE="RESET_STATE";
 
-export const MENU_ERROR="MENU_ERROR";
 

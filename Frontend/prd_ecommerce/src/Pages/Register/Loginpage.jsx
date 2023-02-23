@@ -6,12 +6,12 @@ import {FcGoogle} from "react-icons/fc"
 import {BsFacebook} from "react-icons/bs"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import { loginError, loginRequest, loginSuccess } from '../../Component/Redux/authreducer/action';
+import { loginError, loginRequest, loginSuccess, userRegister } from '../../Component/Redux/authreducer/action';
 
 
 import { AuthContext } from "../../Component/Context/appcontext";
 import axios from "axios"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { setUserId } from "firebase/analytics"
 import { login } from "../../Component/Redux/authreducer/action"
 import {googleSignIn, signInWithGoogle} from "../../Component/Firebase_config"
@@ -19,8 +19,9 @@ import {googleSignIn, signInWithGoogle} from "../../Component/Firebase_config"
 function Login(){
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
-  const isAuth=useSelector((store)=>store.isAuth)
-
+  const [loginPayload,setLoginPayload]=useState({})
+  const isAuth=useSelector((store)=>store.authReducer.isAuth)
+  const loginStatus=useSelector((store)=>store.authReducer.status)
   const toast=useToast()
   const navigate=useNavigate()
   const dispatch=useDispatch()
@@ -30,40 +31,83 @@ function Login(){
     e.preventDefault();
     try {
    const user= await googleSignIn();
-   console.log("from signup",user);
+   console.log("from signup google",user);
+
    if(user.user.email!==undefined){
     const payload={
       username:user.user.displayName,
       email:user.user.email,
       password:`${user.user.displayName.split(" ")[0]}@byme`
     }
-    axios.post("https://red-houndstooth.cyclic.app/user/signup",payload).then((res)=>{
-      // console.log(res.data)
-        console.log(res.data,"userdata after login with google")
-        if(res.status===200){
-         const  login_payload={
-          email:user.user.email,
-          password:`${user.user.displayName.split(" ")[0]}@byme`
-         }
-         dispatch(login(payload)).then((res)=>{
-          toast({
-            position : 'top',
-            colorScheme : 'green', 
-            status : "success",
-            title:"Login Successfuly with googole"
-          })
-          navigate("/")
-        })
+    
+    let login_payload={
+      email:user.user.email,
+      password:`${user.user.displayName.split(" ")[0]}@byme`
+     }
+     setLoginPayload(login_payload)
+     dispatch(userRegister(payload))
+    //  submitHandler()
+  //   if(loginStatus==409){
+  //     dispatch(login(loginPayload))
+  //     toast({
+  //       position : 'top',
+  //       colorScheme : 'red', 
+  //       status : "success",
+  //       title:"User Login successfully"
+  //     })
+  //     navigate("/")
+
+  //  }
+  //     if(loginStatus==200){
+  //       // if(email==""){
+  //        dispatch(login(loginPayload))
+            
+  //       // }
+  //       // else{
+  //         // const login_Payload={
+  //           // email,
+  //           // password
+  //         // }
+  //         // dispatch(login(login_Payload))
+
+  //       // }
+         
+  //    toast({
+  //       position : 'top',
+  //       colorScheme : 'green', 
+  //       status : "success",
+  //       title:"User Login Successfully"
+  //     })
+  //     navigate("/")
+  //   }
+     
+    // axios.post("https://red-houndstooth.cyclic.app/user/signup",payload).then((res)=>{
+    //   // console.log(res.data)
+    //     console.log(res.data,"userdata after login with google")
+    //     if(res.status===200){
+    //      const  login_payload={
+    //       email:user.user.email,
+    //       password:`${user.user.displayName.split(" ")[0]}@byme`
+    //      }
+    //      dispatch(login(payload)).then((res)=>{
+    //       toast({
+    //         position : 'top',
+    //         colorScheme : 'green', 
+    //         status : "success",
+    //         title:"Login Successfuly with google"
+    //       })
+    //       navigate("/")
+    //     })
         }
-      })
+    
   }
-    else{
-      const payload={
-        email:user.user.email,
-        password:`${user.user.displayName.split(" ")[0]}@byme`
-      }
+    // else{
+    //   const payload={
+    //     email:user.user.email,
+    //     password:`${user.user.displayName.split(" ")[0]}@byme`
+    //   }
       
-    }
+    // }
   // navigate("/");
   //  toast({
   //     position : 'top',
@@ -72,7 +116,7 @@ function Login(){
   //     title:"Login sucessfully "
   // })
       
-    } catch (error) {
+     catch (error) {
       console.log(error.message);
     }
   }
@@ -81,6 +125,18 @@ function Login(){
         email,
         password
       }
+      if(email==""){
+        dispatch(login(loginPayload)).then((res)=>{
+          toast({
+            position : 'top',
+            colorScheme : 'green', 
+            status : "success",
+            title:"Login Successfuly"
+          })
+          navigate("/")
+        })
+      }
+      else{
         dispatch(login(payload)).then((res)=>{
           toast({
             position : 'top',
@@ -90,9 +146,54 @@ function Login(){
           })
           navigate("/")
         })
-
-       
+      }
+      
     };
+
+    // useEffect(()=>{
+    //       submitHandler()
+    // },[loginStatus])
+
+    // useEffect(()=>{
+    //   console.log(loginStatus,"status is this after useefct")
+    //   console.log(isAuth,"auth is this after useefct")
+      
+    //   if(loginStatus==409){
+    //     dispatch(login(loginPayload))
+    //     toast({
+    //       position : 'top',
+    //       colorScheme : 'red', 
+    //       status : "success",
+    //       title:"User Login successfully"
+    //     })
+    //     navigate("/")
+
+    //  }
+    //     if(loginStatus==200){
+    //       // if(email==""){
+    //        dispatch(login(loginPayload))
+              
+    //       // }
+    //       // else{
+    //         // const login_Payload={
+    //           // email,
+    //           // password
+    //         // }
+    //         // dispatch(login(login_Payload))
+
+    //       // }
+           
+    //    toast({
+    //       position : 'top',
+    //       colorScheme : 'green', 
+    //       status : "success",
+    //       title:"User Login Successfully"
+    //     })
+    //     navigate("/")
+
+    //   }
+      
+    // },[loginStatus])
 
 return(
   <Box border="1px solid black"  bg="black" pb="30px">  

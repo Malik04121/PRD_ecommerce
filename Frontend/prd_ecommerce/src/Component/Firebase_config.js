@@ -1,4 +1,49 @@
-// Import the functions you need from the SDKs you need
+// // Import the functions you need from the SDKs you need
+// import * as firebase from 'firebase/app';
+// // import firebase from 'firebase/app';
+// import 'firebase/auth';
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAjxp3PMacO94UQDiLVb14Wpg_YIRlZdUg",
+//   authDomain: "techhunt-d92e4.firebaseapp.com",
+//   projectId: "techhunt-d92e4",
+//   storageBucket: "techhunt-d92e4.appspot.com",
+//   messagingSenderId: "323845507155",
+//   appId: "1:323845507155:web:39f70313073cef68f31ea6",
+//   measurementId: "G-8KDX8QD9D2"
+// };
+
+
+// firebase.initializeApp(firebaseConfig);
+
+// export default firebase;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // import { getAuth} from "firebase/auth"
@@ -42,4 +87,4 @@ const signInWithGoogle = async () => {
     signInWithGoogle,
     logout,
   };
-// export default app
+export default app

@@ -1,61 +1,49 @@
 import { Box, Button, Flex, Heading, Text ,Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Input,FormLabel,FormControl, useDisclosure} from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useRef, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { DeliveryAddress } from "./deliveryaddress"
 import { LoginBox } from "./loginbox"
 import { OrderSummary } from "./ordersummary"
 import { PaymentOption } from "./paymentpage"
 import {AiOutlineCheck} from "react-icons/ai"
+import { loginUserData } from "../../../Component/Redux/userreducer/action"
 
 
 function CheckoutPage(){
+    const dispatch=useDispatch()
+
     const [isOrder,setIsOrder]=useState(false)
     const [isAddress,setIsAddress]=useState(true)
     const [isPayment,setIsPayment]=useState(false)
     const [initialStyle,setInitialStyle]=useState(true)
     const [total,setTotal]=useState(0)
     
-
-
     const [isLogin,setIsLogin]=useState(true)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [userData,setUserData]=useState({})
-    const id=useSelector((store)=>store.id)
+    const user=useSelector((store)=>store.userReducer.userData)
+   const loading=useSelector((store)=>store.userReducer.isLoading)
 
-    console.log(id,"id in checkoutpage") 
 
     const initialRef = useRef(null)
     const finalRef = useRef(null)
 
-    const getuserdata=()=>{
-        // try{
-           axios.get(`https://red-houndstooth.cyclic.app/user?_id=${id}`)
-           .then((res)=>{
-            console.log(res.data[0],"data is this ")
-            setUserData(res.data[0])
-           })
-              
-        // }
-        // catch(err){
-                // console.log(err)
-        // }
-    }
 
     useEffect(()=>{
-        getuserdata()
+       dispatch(loginUserData())
     },[])
 
-    useEffect(()=>{
-        console.log("user data cart ",userData.cart)
-        const cartdata=userData.cart
-        cartdata?.map((ele)=>{
-            setTotal(total=>total+ele.price)
-        })
-          console.log("userdata os this usefect",userData)
-    },[userData])
 
-    
+    useEffect(()=>{
+         setUserData(user)
+         const totalPrice = user?.cart.reduce((total, item) => total + item.price, 0);
+        setTotal(totalPrice);
+    },[user])
+
+    useEffect(()=>{
+          console.log("loading is this",loading)
+    },[loading])
 
 return(
     <Box bg="#1B1B1B" pb="40px">
@@ -69,7 +57,7 @@ return(
             <Flex bg={isAddress?"#33FF83":"black"} color="white" p="2%" gap="5px" justifyContent="space-between">
                 
                 <Flex gap="15px">
-                <Box bg="silver" color="black" h="70%" pr="5px" pl="5px" pt="-5px" >
+                <Box bg="silver" color="black" h="100%" pr="5px" pl="5px" pt="-5px" >
                     <Heading size="md">2</Heading>
                 </Box>
                 <Heading as="h6" size="md" fontWeight="bold" color={isAddress?"black":"white"}>Delivery Address</Heading>
@@ -80,7 +68,7 @@ return(
                     setIsAddress(true);setInitialStyle(true);setIsOrder(false)}}>Change</Button>
 
             </Flex>
-           {isAddress&&<DeliveryAddress setOrder={setIsOrder} userdata={userData.address} setAddressStatus={setIsAddress} setInitialStyle={setInitialStyle} />}
+           {isAddress&&<DeliveryAddress setOrder={setIsOrder} userdata={userData?.address} setAddressStatus={setIsAddress} setInitialStyle={setInitialStyle} />}
 
            </Box>
              
@@ -88,8 +76,8 @@ return(
            {initialStyle? <Flex bg="grey" color="white" p="2%" gap="5px" justifyContent="space-between">
                 
                 <Flex gap="15px">
-                <Box bg="silver" color="black" h="70%" pr="5px" pl="5px" pt="-5px" >
-                    <Heading size="md">2</Heading>
+                <Box bg="silver" color="black" h="100%" pr="5px" pl="5px" pt="-5px" >
+                    <Heading size="md">3</Heading>
                 </Box>
                 <Heading as="h6" size="md" fontWeight="bold" color="white">Order Summary</Heading>
                 </Flex>
