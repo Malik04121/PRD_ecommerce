@@ -68,8 +68,10 @@ useEffect(()=>{
 useEffect(()=>{
   if(userData){
     setCartdata(userData.cart)
-  const totalPrice = userData.cart?.reduce((total, item) => total + item.price, 0);
+    console.log(userData.cart)
+  const totalPrice = userData.cart.reduce((total, item) => total + item.price, 0);
  setCartTotal(totalPrice);
+ console.log(totalPrice,cartTotal)
   }
   
 },[userData])
@@ -146,7 +148,7 @@ return(
             <Box mt="30px">
                  <Flex justifyContent="space-between">
                     <Text fontSize="lg" as="b">Total Amount</Text>
-                    <Text fontSize="lg" as="b">{cartTotal}</Text>
+                    <Text fontSize="lg" as="b">{userData?cartTotal:0}</Text>
                 </Flex>
                 
             </Box>

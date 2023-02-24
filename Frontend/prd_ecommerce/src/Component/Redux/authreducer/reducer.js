@@ -56,7 +56,7 @@ const reducer=(oldstate=initialState,action)=>{
     case types.ADMIN_LOGIN_SUCCESS:
             savedata("token2",oldstate.token=payload)
             savedata("name",oldstate.adminusername=username)
-            return{...oldstate,isAuthLoading:false,token2:payload,isAuth2:true,adminusername:username}
+            return{...oldstate,isAuthLoading:false,token2:payload,adminusername:username}
             
     case types.ADMIN_LOGIN_ERROR:
             return{...oldstate,isAuthLoading:false,isAuth2:false,isAuthError:true}    

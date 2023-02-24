@@ -109,7 +109,7 @@ const adminLogin=(params)=>(dispatch)=>{
     dispatch(adminLoginRequest)
     return axios.post('https://sangria-crocodile-tux.cyclic.app/admin/login',params)
     .then((r)=>{
-        console.log(r,"res is")
+        console.log(r.data,"res is")
         dispatch(adminLoginSuccess(r.data.token2,r.data.name))
     })
     .catch((e)=>{

@@ -33,10 +33,10 @@ function Orders(){
 
     return(
         <>
-          <Box bg="silver" position="fixed" left="200px"  h="1500px" pl="15px" pr="5px">
+          <Box bg="silver" position="fixed" left="200px"  h="1500px" pl="15px" pr="5px" w="85%">
             <Text fontSize="xl" as="b" ml="30px" mt="30px">Orders</Text>
-            <TableContainer >
-       <Table variant='simple' bg="white" mt="20px" >
+            <TableContainer p="2%" overflow="auto">
+       <Table variant='simple' bg="white" mt="20px" size="sm" >
         <Thead>
          <Tr>
         <Th>Order ID</Th>
@@ -53,10 +53,11 @@ function Orders(){
     <Tbody>
         
         {ordersDetail?.map((order)=>(
+
             <Tr>
             <Td>{order._id}</Td>
             <Td>{order.user.username}</Td>
-            <Td >{order.updateOn}</Td>
+            <Td >{new Date(order.updateOn).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</Td>
             <Td>Total</Td>
             <Td >{order.paymentStatus}</Td>
             <Td >{order.payment}</Td>
