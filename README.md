@@ -21,8 +21,8 @@ TechHunt sells electronic products. It is an E-Commerce website which consist of
 
 ## Admin Side
 To check Admin page Use this username and password
-username:Malik
-password:Malik0412
+<text>username:<b>Malik</b></text>
+<text>password:<b>Malik0412</b></text>
 
 
 ## Glimps of Project
