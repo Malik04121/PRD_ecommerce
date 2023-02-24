@@ -19,7 +19,7 @@ TechHunt sells electronic products. It is an E-Commerce website which consist of
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) 
 <br>
 
-##Admin Side
+## Admin Side
 To check Admin page Use this username and password
 username:Malik
 password:Malik0412
