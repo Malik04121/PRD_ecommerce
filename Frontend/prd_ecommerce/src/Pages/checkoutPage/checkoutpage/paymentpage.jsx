@@ -32,7 +32,7 @@ function PaymentOption(paymentStatus){
                     status : "success",
                     title:"Your Order is Successfully Placed"
                   })
-                  dispatch(prodUpdate(cartData))
+                //   dispatch(prodUpdate(cartData))
                   navigate("/")
             })
         console.log(paymentDetail)

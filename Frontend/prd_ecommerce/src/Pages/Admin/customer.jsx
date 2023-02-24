@@ -13,8 +13,6 @@ function Customer(){
     const getUser=async()=>{
         try{
         await dispatch(customerMenu())
-        setUserData(user)
-            
         }
         catch(err){
             console.log(err)
@@ -24,13 +22,17 @@ function Customer(){
       useEffect(()=>{
           getUser()
       },[])
+      useEffect(()=>{
+        setUserData(user)
+        console.log(user)
+    },[user])
 
     return(
         <>
-              <Box bg="silver" position="fixed" left="200px"  h="1500px" pl="15px" pr="5px">
+              <Box bg="silver" position="fixed" left="200px"  h="1500px" pl="15px" pr="5px" w="85%">
             <Text fontSize="xl" as="b" ml="30px" mt="30px">User</Text>
-            <TableContainer >
-       <Table variant='simple' bg="white" mt="20px" >
+            <TableContainer p="2%" overflowY="scroll" maxH="600px">
+       <Table variant='simple' bg="white" >
         <Thead>
          <Tr>
         <Th>UserId</Th>
@@ -42,7 +44,7 @@ function Customer(){
       </Tr>
     </Thead>
     {isLoading?<Text>...Loading</Text>:
-    <Tbody>
+    <Tbody >
         
         {userData?.map((user)=>(
             <Tr>
@@ -50,7 +52,7 @@ function Customer(){
             <Td>{user.username}</Td>
             <Td >{user.email}</Td>
             <Td >{user.phone}</Td>
-            {/* <Td >{user.address[0].fulladdress}</Td> */}
+            <Td >{user.address[0]?.fulladdress}</Td>
           </Tr>
         ))}
       

@@ -110,5 +110,23 @@ const addressUpdate=(data)=>async(dispatch,getState)=>{
         dispatch(userError)
     }  
 }
+const addProduct=(data)=>(dispatch,getState)=>{
+    try{
+        const { token2 } = getState().authReducer
+        // const { id } = getState().authReducer
+        dispatch(userRequest())
+        axios.post("https://sangria-crocodile-tux.cyclic.app/product/post",data,{
+            headers: {
+                'Authorization': `${token2}`
+              }
+        })
+        .then((res)=>console.log(res,"res is this afetr post "))
+        .catch(err=>console.log(err,"error in catch"))
+    }
+    catch(err){
+        console.log("err is in action js",err)
+        dispatch(userError)
+    }  
+}
 
-export {paymentData,userData,prodUpdate,loginUserData,addressUpdate}
+export {paymentData,userData,prodUpdate,loginUserData,addressUpdate,addProduct}

@@ -18,14 +18,14 @@ function MenuDetail(){
     }
     if(menuType=="customer"){
         return(
-            <Box>
+            <Box bg="red">
             <Customer/>
             </Box>
         )
     }
     if(menuType=="add product"){
         return(
-            <Box>
+            <Box >
             <AddProduct/>
             </Box>
         )

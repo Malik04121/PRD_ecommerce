@@ -7,11 +7,11 @@ import { TopNavbar } from "./topNavbar"
 function Admin(){
 
 return(
-    <Box bg="silver">
+    <>
       <TopNavbar/>
       <SideNavbar/>
       <MenuDetail/>
-    </Box>
+    </>
 )
 
 }
