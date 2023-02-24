@@ -65,8 +65,10 @@ const loginUserData=(data)=>async(dispatch,getState)=>{
     dispatch(loginUserRequest())
     try{
     const { id } = getState().authReducer
+    console.log("data fecthed")
           const response=await axios.get(`https://sangria-crocodile-tux.cyclic.app/user?_id=${id}`)
-           dispatch(loginUserSuccess(response.data[0]))
+          console.log("parsed data is this",response.data[0])
+          dispatch(loginUserSuccess(response.data[0]))
           console.log(response.data[0],"userdata is ") 
           
     }

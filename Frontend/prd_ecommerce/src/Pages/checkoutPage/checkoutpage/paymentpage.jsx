@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { addUser } from "../../../Component/Redux/adminreducer/action"
+import { prodUpdate } from "../../../Component/Redux/userreducer/action"
 
 
 function PaymentOption(paymentStatus){
@@ -17,6 +18,7 @@ function PaymentOption(paymentStatus){
         setCheckBox(e.target.value)
     }
     const paymentStatus2=(data)=>{
+        const cartData={}
             const paymentDetail={
                 user:userdata,
                 payment:data,
@@ -30,6 +32,7 @@ function PaymentOption(paymentStatus){
                     status : "success",
                     title:"Your Order is Successfully Placed"
                   })
+                  dispatch(prodUpdate(cartData))
                   navigate("/")
             })
         console.log(paymentDetail)

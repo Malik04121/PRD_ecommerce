@@ -19,11 +19,18 @@ function Cart(){
     const navigate=useNavigate()
     const toast = useToast();
 
+    // const cartTotal = useSelector(store => {
+    //   return store.userReducer.userData.cart.reduce((total, item) => total + item.price, 0);
+    // });
+
 
 
 const getcartdetail=()=>{
   // console.log(userName,"username us")
-    dispatch(loginUserData())
+     dispatch(loginUserData())
+    //  .then((res)=>console.log(res.data,"res in cart"))
+    //   console.log("logindata is this")
+    
     // .then((res)=>console.log(res,"res is this in cart"))
     // .catch((err)=>{
     //   console.log(err,"error in catch")
@@ -52,32 +59,27 @@ const getcartdetail=()=>{
 
     
 }
-// console.log(cartTotal)
 
-// console.log(cartdata,"cartdata")
 
 useEffect(()=>{
-    setCartTotal(0)
-    getcartdetail()
-   
-    console.log("after")
+    dispatch(loginUserData())
 },[])
+
 useEffect(()=>{
-  setCartdata(userData.cart)
-  const totalPrice = userData?.cart.reduce((total, item) => total + item.price, 0);
+  if(userData){
+    setCartdata(userData.cart)
+  const totalPrice = userData.cart?.reduce((total, item) => total + item.price, 0);
  setCartTotal(totalPrice);
+  }
+  
 },[userData])
 
 
 if(Loading){
-  console.log(Loading,"loading is this",userData)
+  return <Text>...Loading</Text>
+  // console.log(Loading,"loading is this",userData)
 }
-// useEffect(()=>{
-//   cartdata.map((ele)=>{
-//     console.log(ele,"2 ele")
-//     setCartTotal(cartTotal=>cartTotal+ele.price)
-// })
-// },[cartdata])
+
 
 return(
     <Box bg="#1B1B1B" pb="30px">
@@ -93,10 +95,11 @@ return(
                 </Flex>
              </Flex>
            </Box>
-
+            
+            {!userData?<Text color="white">...Loading</Text>:
            <Box bg="black" border="0.5px solid white" mt="20px" p="10px" borderRadius="20px">
-
-           {cartdata?.map((item)=>(
+           
+           {cartdata.map((item)=>(
                 <Flex  color="white"  mt="30px">
                      
                         <Box  w="50%" mt="-20px">
@@ -122,11 +125,12 @@ return(
                 </Flex>
            ))}
              </Box>
+            }
                        
            
         </Box>
 
-        <Box mt="30px" bg="black" p="20px" w="30%" border="0.7px solid white" borderRadius="20px">
+        <Box mt="30px" bg="black" p="20px" w="30%" border="0.7px solid white" borderRadius="20px" h="40%">
             <Box textAlign="Center"><Text as="b">Price Details</Text>
               </Box>
             <Box mt="30px">
