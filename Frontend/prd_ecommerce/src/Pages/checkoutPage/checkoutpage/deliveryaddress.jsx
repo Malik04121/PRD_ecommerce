@@ -14,7 +14,7 @@ const address={
     "state":""
 }
 
-function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle}){
+function DeliveryAddress({setOrder,userdata,setAddressStatus,setInitialStyle,total}){
    const [userAddress,setUserAddress]=useState(address)
    const Id=useSelector((store)=>store.authReducer.id)
    const loading=useSelector((store)=>store.userReducer.isLoading)

@@ -20,10 +20,11 @@ const paymentSuccess=(payload)=>{
         payload
     }
 }
-const loginUserSuccess=(payload)=>{
+const loginUserSuccess=(payload,cartTotal)=>{
     return{
         type:types.LOGIN_USER_SUCCESS,
-        payload
+        payload,
+        cartTotal
     }
 }
 const userSuccess=(payload)=>{
@@ -68,7 +69,15 @@ const loginUserData=(data)=>async(dispatch,getState)=>{
     console.log("data fecthed")
           const response=await axios.get(`https://sangria-crocodile-tux.cyclic.app/user?_id=${id}`)
           console.log("parsed data is this",response.data[0])
-          dispatch(loginUserSuccess(response.data[0]))
+          const totalPrice = response.data[0].cart.reduce((total, item) =>{
+            if (response.data[0].cart.length> 0) { // check if cart is not empty
+              return total + item.price;
+            } else {
+              return total;
+            }
+          },0)
+          console.log("totalPrice in action",totalPrice)
+          dispatch(loginUserSuccess(response.data[0],totalPrice))
           console.log(response.data[0],"userdata is ") 
           
     }

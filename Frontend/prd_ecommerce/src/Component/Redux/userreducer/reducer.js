@@ -8,7 +8,7 @@ let initialState={
 }
 
 const reducer=(oldstate=initialState,action)=>{
-     const {type,payload}=action
+     const {type,payload,cartTotal}=action
 
     switch(type){
         case types.USER_REQUEST:
