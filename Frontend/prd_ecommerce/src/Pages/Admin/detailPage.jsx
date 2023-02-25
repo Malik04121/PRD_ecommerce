@@ -2,6 +2,7 @@ import { Box, Text } from "@chakra-ui/react"
 import { shallowEqual, useSelector } from "react-redux"
 import { AddProduct } from "./addproduct"
 import { Customer } from "./customer"
+import { Dashboard } from "./dashboard"
 import { Orders } from "./orders"
 
 
@@ -27,6 +28,13 @@ function MenuDetail(){
         return(
             <Box >
             <AddProduct/>
+            </Box>
+        )
+    }
+    if(menuType=="dashboard"){
+        return(
+            <Box>
+                <Dashboard/>
             </Box>
         )
     }

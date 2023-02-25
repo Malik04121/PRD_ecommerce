@@ -37,7 +37,13 @@ function CheckoutPage(){
 
     useEffect(()=>{
          setUserData(user)
-         const totalPrice = user?.cart.reduce((total, item) => total + item.price, 0);
+         const totalPrice = user?.cart.reduce((total, item) =>{
+          if (user.cart.length> 0) { // check if cart is not empty
+            return total + item.price;
+          } else {
+            return total;
+          }
+        },0)
         setTotal(totalPrice);
     },[user])
 
@@ -68,7 +74,7 @@ return(
                     setIsAddress(true);setInitialStyle(true);setIsOrder(false)}}>Change</Button>
 
             </Flex>
-           {isAddress&&<DeliveryAddress setOrder={setIsOrder} userdata={userData?.address} setAddressStatus={setIsAddress} setInitialStyle={setInitialStyle} />}
+           {isAddress&&<DeliveryAddress setOrder={setIsOrder} userdata={userData?.address} setAddressStatus={setIsAddress} setInitialStyle={setInitialStyle} total={total}/>}
 
            </Box>
              
@@ -187,7 +193,7 @@ return(
                 <Heading as="h6" size="md" fontWeight="bold" color="black">Payment Options</Heading>
             </Flex>
             
-            {isPayment&&<PaymentOption paymentStatus={isPayment}/>}
+            {isPayment&&<PaymentOption paymentStatus={isPayment} total={total}/>}
              
 
            </Box>

@@ -69,7 +69,14 @@ useEffect(()=>{
   if(userData){
     setCartdata(userData.cart)
     console.log(userData.cart)
-  const totalPrice = userData.cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = userData.cart.reduce((total, item) => {
+    if (userData.cart.length> 0) { // check if cart is not empty
+      return total + item.price;
+    } else {
+      return total;
+    }
+  },0)
+  
  setCartTotal(totalPrice);
  console.log(totalPrice,cartTotal)
   }

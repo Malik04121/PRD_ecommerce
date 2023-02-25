@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Carousel from "react-multi-carousel";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { userData } from "../../Component/Redux/userreducer/action";
 // import { Categorydetails } from './productcrouseldata';
 
@@ -63,6 +64,7 @@ return(
      infinite={true}
      >
        {!laptopdata?<Heading color="white">...Loading</Heading>:laptopdata.map((ele)=>(
+        <Link to="/product/laptop/c Windows">
     <Box   mr="10px" ml="10px"  color="white" bg="#4B4B4B" mt="20px">
         <Box >
           <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1}/>   
@@ -74,6 +76,7 @@ return(
           <Text >M.R.P: &nbsp;<Text as="s"> ₹ {ele.price+ele.price*8/100}</Text></Text>
         </Box>
     </Box>
+    </Link>
   ))}
   
      </Carousel>

@@ -58,7 +58,7 @@ function Orders(){
             <Td>{order._id}</Td>
             <Td>{order.user.username}</Td>
             <Td >{new Date(order.updateOn).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</Td>
-            <Td>Total</Td>
+            <Td>{order.total}</Td>
             <Td >{order.paymentStatus}</Td>
             <Td >{order.payment}</Td>
           </Tr>

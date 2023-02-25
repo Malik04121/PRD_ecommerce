@@ -6,7 +6,7 @@ import { addUser } from "../../../Component/Redux/adminreducer/action"
 import { prodUpdate } from "../../../Component/Redux/userreducer/action"
 
 
-function PaymentOption(paymentStatus){
+function PaymentOption({paymentStatus,total}){
     const [checkBox,setCheckBox]=useState("")
     const dispatch=useDispatch()
     const toast=useToast()
@@ -14,6 +14,7 @@ function PaymentOption(paymentStatus){
     const userdata=useSelector((store)=>store.userReducer.userData)
     const loading=useSelector((store)=>store.menuReducer.isLoading)
 
+    console.log(total,"total is this")
     const checkboxhandler1=(e)=>{
         setCheckBox(e.target.value)
     }
@@ -22,7 +23,9 @@ function PaymentOption(paymentStatus){
             const paymentDetail={
                 user:userdata,
                 payment:data,
-                paymentStatus:data=="COD"?"unPaid":"paid"
+                paymentStatus:data=="COD"?"unPaid":"paid",
+                total:total,
+                deliveryStatus:"Not Delivered"
             }
             dispatch(addUser(paymentDetail))
             .then(res=>{

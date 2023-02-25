@@ -1,5 +1,6 @@
 import { Image } from "@chakra-ui/image"
 import { Box, Divider, Flex, Grid, Heading, SimpleGrid, Text } from "@chakra-ui/layout"
+import { Link } from "react-router-dom"
 
 function TopBrand(){
 let brand=[
@@ -9,23 +10,23 @@ let brand=[
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260853/Croma%20Assets/CMS/Brand%20Logos/samsung_tmmzob.png/mxw_1440,f_auto",
-        name:""
+        name:"Samsung"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260851/Croma%20Assets/CMS/Brand%20Logos/hp_co1yuv.png/mxw_1440,f_auto",
-        name:""
+        name:"Hp"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1654848446/Croma%20Assets/CMS/Brand%20Logos/dell_nagdmt.png/mxw_1440,f_auto",
-        name:""
+        name:"Dell"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260853/Croma%20Assets/CMS/Brand%20Logos/vivo_sqsnbm.png/mxw_1440,f_auto",
-        name:""
+        name:"Vivo"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260851/Croma%20Assets/CMS/Brand%20Logos/jbl_prjtcv.png/mxw_1440,f_auto",
-        name:""
+        name:"JBL"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260851/Croma%20Assets/CMS/Brand%20Logos/Lenovo_dxvgyb.png/mxw_1440,f_auto",
@@ -33,7 +34,7 @@ let brand=[
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1652260852/Croma%20Assets/CMS/Brand%20Logos/mi_dtxgef.png/mxw_1440,f_auto",
-        name:"Xiomi"
+        name:"Mi"
     },
     {
         src:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1654848447/Croma%20Assets/CMS/Brand%20Logos/Lg_duygz8.png/mxw_1440,f_auto",
@@ -67,7 +68,9 @@ return(
         <SimpleGrid columns={{base:3,md:4,lg:6}}  gap="0px" mr={{base:"30px",md:"50px",lg:"100px"}} ml={{base:"30px",md:"50px",lg:"100px"}}  mt="30px">
             {/* <Flex> */}
                 {brand.map((ele)=>(
+                    <Link to={`/product/Mobile/b ${ele.name}`}>
                     <Image src={ele.src}  />
+                    </Link>
                 ))}
                 {/* <Text>Appe</Text> */}
                 {/* <Text>Samsung</Text> */}
