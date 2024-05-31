@@ -80,7 +80,7 @@ const logoutSuccess=()=>{
 
 const login=(params)=>(dispatch)=>{
     dispatch(loginRequest)
-    return axios.post('https://sangria-crocodile-tux.cyclic.app/user/login',params)
+    return axios.post('https://techhunt-backend-1.onrender.com/user/login',params)
     .then((r)=>{
         console.log(r,"res is after login")
 
@@ -93,7 +93,7 @@ const login=(params)=>(dispatch)=>{
 const userRegister=(params)=>(dispatch)=>{
     // dispatch(resetState())
     dispatch(registerRequest)
-    return axios.post('https://sangria-crocodile-tux.cyclic.app/user/signup',params)
+    return axios.post('https://techhunt-backend-1.onrender.com/user/signup',params)
     .then((r)=>{
         console.log("response after register is ",r)
         dispatch(registerSuccess(r.data.msg,r.status))
@@ -107,7 +107,7 @@ const userRegister=(params)=>(dispatch)=>{
 }
 const adminLogin=(params)=>(dispatch)=>{
     dispatch(adminLoginRequest)
-    return axios.post('https://sangria-crocodile-tux.cyclic.app/admin/login',params)
+    return axios.post('https://techhunt-backend-1.onrender.com/admin/login',params)
     .then((r)=>{
         console.log(r.data,"res is")
         dispatch(adminLoginSuccess(r.data.token2,r.data.name))

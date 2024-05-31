@@ -71,12 +71,12 @@ import { prodUpdate } from "../../Component/Redux/userreducer/action";
     const getProd = () => {
         if(para[0]=="c" || filtertype=="category"){
             axios
-        .get(`https://sangria-crocodile-tux.cyclic.app/product?type=${param}&category=${checkboxvalue}`)
+        .get(`https://techhunt-backend-1.onrender.com/product?type=${param}&category=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
         if(para[0]=="b" || filtertype=="brand"){
             axios
-        .get(`https://sangria-crocodile-tux.cyclic.app/product?type=${param}&brand=${checkboxvalue}`)
+        .get(`https://techhunt-backend-1.onrender.com/product?type=${param}&brand=${checkboxvalue}`)
         .then((res) => setProddata(res.data));
         }
     };

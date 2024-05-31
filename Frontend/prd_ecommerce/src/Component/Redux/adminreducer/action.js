@@ -51,7 +51,7 @@ const resetState=()=>{
 const addUser=(params)=>async(dispatch)=>{
     try{
          
-         const response=await axios.post("https://sangria-crocodile-tux.cyclic.app/admin/orderdetail",params)
+         const response=await axios.post("https://techhunt-backend-1.onrender.com/admin/orderdetail",params)
            
     }
     catch(error){
@@ -61,7 +61,7 @@ const addUser=(params)=>async(dispatch)=>{
 const orderMenu=(params)=>(dispatch)=>{
     dispatch(resetState())
     dispatch(menuRequest())
-    return axios.get("https://sangria-crocodile-tux.cyclic.app/admin")
+    return axios.get("https://techhunt-backend-1.onrender.com/admin")
     .then((res)=>dispatch(menuApiSuccess(res.data)))
     .catch(err=>dispatch(menuError))
 
@@ -69,7 +69,7 @@ const orderMenu=(params)=>(dispatch)=>{
 const customerMenu=(params)=>(dispatch)=>{
     dispatch(resetState())
     dispatch(menuRequest())
-    return axios.get("https://sangria-crocodile-tux.cyclic.app/user")
+    return axios.get("https://techhunt-backend-1.onrender.com/user")
     .then((res)=>dispatch(menuApiSuccess(res.data)))
     .catch(err=>dispatch(menuError))
 

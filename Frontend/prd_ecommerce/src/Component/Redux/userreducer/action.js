@@ -51,14 +51,14 @@ const userError=()=>{
 
 const paymentData=(data)=>(dispatch)=>{
     dispatch(userRequest())
-    return axios.post("https://sangria-crocodile-tux.cyclic.app/admin/orderdetail",data)
+    return axios.post("https://techhunt-backend-1.onrender.com/admin/orderdetail",data)
     .then((res)=>dispatch(paymentSuccess(res.data)))
     .catch(err=>dispatch(userError))
 }
 
 const userData=(data)=>(dispatch)=>{
     dispatch(userRequest())
-    return axios.get("https://sangria-crocodile-tux.cyclic.app/product")
+    return axios.get("https://techhunt-backend-1.onrender.com/product")
     .then((res)=>dispatch(userSuccess(res.data)))
     .catch(err=>dispatch(userError))
 }
@@ -67,7 +67,7 @@ const loginUserData=(data)=>async(dispatch,getState)=>{
     try{
     const { id } = getState().authReducer
     console.log("data fecthed")
-          const response=await axios.get(`https://sangria-crocodile-tux.cyclic.app/user?_id=${id}`)
+          const response=await axios.get(`https://techhunt-backend-1.onrender.com/user?_id=${id}`)
           console.log("parsed data is this",response.data[0])
           const totalPrice = response.data[0].cart.reduce((total, item) =>{
             if (response.data[0].cart.length> 0) { // check if cart is not empty
@@ -92,7 +92,7 @@ const prodUpdate=(data)=>(dispatch,getState)=>{
         const { token } = getState().authReducer
         const { id } = getState().authReducer
         dispatch(userRequest())
-        axios.patch(`https://sangria-crocodile-tux.cyclic.app/user/update/${id}`,data,{
+        axios.patch(`https://techhunt-backend-1.onrender.com/user/update/${id}`,data,{
             headers: {
                 'Authorization': `${token}`
               }
@@ -110,7 +110,7 @@ const addressUpdate=(data)=>async(dispatch,getState)=>{
     try{
         const { id } = getState().authReducer
         dispatch(userRequest())
-        await axios.patch(`https://sangria-crocodile-tux.cyclic.app/user/address/${id}`,data)
+        await axios.patch(`https://techhunt-backend-1.onrender.com/user/address/${id}`,data)
         .then((res)=>dispatch(addressSuccess()))
         .catch(err=>console.log(err,"error in catch"))
     }
@@ -124,7 +124,7 @@ const addProduct=(data)=>(dispatch,getState)=>{
         const { token2 } = getState().authReducer
         // const { id } = getState().authReducer
         dispatch(userRequest())
-        axios.post("https://sangria-crocodile-tux.cyclic.app/product/post",data,{
+        axios.post("https://techhunt-backend-1.onrender.com/product/post",data,{
             headers: {
                 'Authorization': `${token2}`
               }
