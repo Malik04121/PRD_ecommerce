@@ -55,7 +55,7 @@ return(
          <Divider orientation="horizontal" borderColor="#33FF83" borderWidth="1.5px" mt="8px" />
          <Divider orientation="horizontal" borderColor="#33FF83" mt="5px" borderWidth="1.5px"/>
         </Box>
-         <Heading size="md" color="white" as="h6">Best Selling Laptops</Heading>
+         <Heading size="md" color="white" as="h6">Best Selling Product</Heading>
         </Flex> 
     <Box  pr={{base:"15px",md:"40px",lg:"80px"}} pl={{base:"15px",md:"40px",lg:"80px"}} bg="#1B1B1B">
         
@@ -67,7 +67,10 @@ return(
         <Link to="/product/laptop/c Windows">
     <Box   mr="10px" ml="10px"  color="white" bg="#4B4B4B" mt="20px">
         <Box >
-          <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1}/>   
+          <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1} onError={(e) => {
+        e.target.onerror = null; // Prevents looping in case fallback fails
+        e.target.src = "https://techhunt-project-assets.s3.ap-south-1.amazonaws.com/home_page/ipad.jpeg"; // Fallback image
+      }}/>   
           </Box> 
           <Box p="5%" > 
           <Text  whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" mr="10px" >{ele.name}</Text>

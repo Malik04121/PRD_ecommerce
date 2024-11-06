@@ -68,7 +68,9 @@ return(
      <Link to="/product/Mobile/c Android">
      <Box   mr="10px" ml="10px"  color="white" bg="#4B4B4B" mt="20px">
          <Box >
-           <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1}/>   
+           <Image border="none" w="80%" m="auto" mb="-5%"  objectFit="cover" objectPosition="top" src={ele.image1} onError={(e) => {
+        e.target.onerror = null; // Prevents looping in case fallback fails
+        e.target.src = "https://techhunt-project-assets.s3.ap-south-1.amazonaws.com/home_page/samsung-phone.jpeg"}}/>   
            </Box> 
            <Box p="5%" > 
            <Text  whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" mr="10px" >{ele.name}</Text>

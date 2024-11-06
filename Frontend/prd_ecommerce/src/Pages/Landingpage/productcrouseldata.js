@@ -10,35 +10,35 @@ export const ItemDetails1 = [
   ]
 export const Categorydetails=[
     {
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991658/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/Phone_qhq1wa.png/mxw_1440,f_auto",
+        img:"https://abufulanstore.co.ke/wp-content/uploads/2024/03/phones.webp",
         caption:"mobile",
         name:"Mobiles"
     },
     {
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991658/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/TV_by2xka.png/mxw_1440,f_auto",
+        img:"https://rameshcorporation.com/wp-content/uploads/2022/08/mxw_2048f_auto-1.png",
         caption:"Television",
         name:"Television"
     },
     {
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991659/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/Laptop_zp1dxi.png/mxw_1440,f_auto",
+        img:"https://abufulanstore.co.ke/wp-content/uploads/2024/03/pc-and-laptops.webp",
         caption:"laptop",
         name:"Laptops"
     },{
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991659/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/AC_gw4ktn.png/mxw_1440,f_auto",
+        img:"https://rameshcorporation.com/wp-content/uploads/2022/08/mxw_2048f_auto-4.png",
         caption:"AC",
         name:"AC"
     },{
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991657/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/Ref_jmphdw.png/mxw_1440,f_auto",
+        img:"https://rameshcorporation.com/wp-content/uploads/2022/08/mxw_2048f_auto-5.png",
         caption:"Refrigerator",
         name:""
     },
     {
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991658/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/WM_a9evzk.png/mxw_1440,f_auto",
+        img:"https://rameshcorporation.com/wp-content/uploads/2022/08/mxw_2048f_auto-6.png",
         caption:"WashingMachine",
         name:""
     },
     {
-        img:"https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1650991658/Croma%20Assets/CMS/Homepage%20Banners/Category%20Navigation/Wear_d0c5fu.png/mxw_1440,f_auto",
+        img:"https://rameshcorporation.com/wp-content/uploads/2022/08/mxw_2048f_auto-3.png",
         caption:"",
         name:""
     },

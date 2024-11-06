@@ -28,6 +28,10 @@ const loginUserSuccess=(payload,cartTotal)=>{
     }
 }
 const userSuccess=(payload)=>{
+    console.log(
+        "payload is this",payload
+    );
+    
     return{
         type:types.USER_SUCCESS,
         payload
@@ -59,7 +63,10 @@ const paymentData=(data)=>(dispatch)=>{
 const userData=(data)=>(dispatch)=>{
     dispatch(userRequest())
     return axios.get("https://techhunt-backend-1.onrender.com/product")
-    .then((res)=>dispatch(userSuccess(res.data)))
+    .then((res)=>{
+        // console.log("data is this",res.data)
+        dispatch(userSuccess(res.data))
+})
     .catch(err=>dispatch(userError))
 }
 const loginUserData=(data)=>async(dispatch,getState)=>{

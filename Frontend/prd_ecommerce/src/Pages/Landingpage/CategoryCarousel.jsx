@@ -38,7 +38,7 @@ return(
     <Box mt="50px"  mr="0px" ml="0px">
         <Box >
           <Link to={ele.caption}>
-          <Image border="none" w="100%"    bg="#131212 " objectFit="cover" objectPosition="top" h="100%" src={ele.img}/>     
+          <Image border="none" w="100%"  bg="#131212 " objectFit="cover" objectPosition="top" h="100%" src={ele.img}/>     
           </Link>
         </Box>
     </Box>
